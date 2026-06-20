@@ -30,7 +30,7 @@
             justify-content: center;
             align-items: flex-start;
             overflow-x: hidden;
-            padding: 40px 20px;
+            padding: 20px 10px;
         }
 
         /* Background Effects */
@@ -49,31 +49,16 @@
 
         @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
 
-        /* Background Music Toggle Button */
+        /* BGM Toggle */
         #bgm-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 10000;
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid var(--neon-blue);
-            color: var(--neon-green);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 12px;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            gap: 8px;
-            transition: 0.3s;
+            position: fixed; top: 20px; right: 20px; z-index: 10000;
+            background: rgba(0, 0, 0, 0.6); border: 1px solid var(--neon-blue);
+            color: var(--neon-green); padding: 8px 15px; border-radius: 20px;
+            font-family: 'Orbitron', sans-serif; font-size: 12px; cursor: pointer;
+            display: none; align-items: center; gap: 8px; transition: 0.3s;
             box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
         }
-        #bgm-toggle:hover {
-            background: var(--neon-blue);
-            color: #000;
-            box-shadow: 0 0 20px var(--neon-blue);
-        }
+        #bgm-toggle:hover { background: var(--neon-blue); color: #000; box-shadow: 0 0 20px var(--neon-blue); }
 
         /* Splash Screen */
         #splash-screen {
@@ -96,16 +81,16 @@
             box-shadow: 0 0 30px var(--neon-blue), inset 0 0 20px #fff;
         }
 
-        /* CV Container */
+        /* CV Container - Optimized for A4 Aspect Ratio */
         .cv-wrapper {
             opacity: 0; transform: scale(0.95);
             transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-            display: none; width: 100%; max-width: 210mm;
+            display: none; width: 100%; max-width: 210mm; /* A4 Width */
         }
         .cv-wrapper.active { opacity: 1; transform: scale(1); display: flex; }
 
         .a4-container {
-            width: 100%; height: auto; min-height: 297mm;
+            width: 100%; height: auto; 
             background: var(--glass-bg);
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
@@ -122,104 +107,121 @@
         .cyber-interactive { cursor: pointer; transition: 0.2s; }
         .cyber-interactive:active { transform: scale(0.96) !important; filter: brightness(1.5); }
 
-        /* Left Column - Sidebar */
-        .left-column { width: 50%; padding: 40px 25px; position: relative; z-index: 2; background: rgba(0,0,0,0.2); }
-        
-        /* Right Column - Main Content */
-        .right-column { width: 50%; padding: 40px 30px; z-index: 2; position: relative; }
+        /* Columns */
+        .left-column { width: 50%; padding: 25px 20px; position: relative; z-index: 2; background: rgba(0,0,0,0.2); }
+        .right-column { width: 50%; padding: 25px 25px; z-index: 2; position: relative; }
 
-        .profile-img-container {
-            width: 140px; height: 140px; margin: 0 auto 25px;
-            border-radius: 50%; padding: 4px;
+        /* NEW: Top Profile Grid (Comms + Photo + Identity) */
+        .top-profile-grid {
+            display: flex; justify-content: space-between; align-items: center;
+            gap: 10px; margin-bottom: 20px; width: 100%;
+        }
+        .side-panel {
+            flex: 1; min-width: 0; /* Prevents overflow */
+        }
+        
+        .profile-img-container.compact {
+            width: 90px; height: 90px; margin: 0; flex-shrink: 0;
+            border-radius: 50%; padding: 3px;
             background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
-            box-shadow: 0 0 25px rgba(176, 38, 255, 0.4);
+            box-shadow: 0 0 15px rgba(176, 38, 255, 0.4);
             animation: pulse-glow 3s infinite;
         }
         @keyframes pulse-glow {
-            0% { box-shadow: 0 0 15px rgba(0, 243, 255, 0.3); }
-            50% { box-shadow: 0 0 35px rgba(176, 38, 255, 0.6); }
-            100% { box-shadow: 0 0 15px rgba(0, 243, 255, 0.3); }
+            0% { box-shadow: 0 0 10px rgba(0, 243, 255, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(176, 38, 255, 0.6); }
+            100% { box-shadow: 0 0 10px rgba(0, 243, 255, 0.3); }
         }
-        .profile-img-container img {
+        .profile-img-container.compact img {
             width: 100%; height: 100%; object-fit: cover;
-            border-radius: 50%; border: 3px solid #0a0b10;
+            border-radius: 50%; border: 2px solid #0a0b10;
         }
 
+        /* Mini Labels & Links for Top Grid */
+        .section-label-mini {
+            font-family: 'Orbitron', sans-serif; font-size: 11px;
+            color: var(--neon-blue); letter-spacing: 1px; margin-bottom: 8px;
+            text-transform: uppercase; border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+            padding-bottom: 3px;
+        }
+        .info-link-mini {
+            display: flex; align-items: flex-start; gap: 5px;
+            color: var(--text-main); font-size: 11px; margin-bottom: 6px; font-weight: 500;
+            text-decoration: none; line-height: 1.3; word-break: break-word;
+        }
+        .info-link-mini i { color: var(--neon-purple); font-size: 11px; width: 14px; text-align: center; margin-top: 2px;}
+
+        /* Standard Section Labels */
         .section-label {
             font-family: 'Orbitron', sans-serif; font-size: 13px;
-            color: var(--neon-blue); letter-spacing: 2px; margin-bottom: 12px;
+            color: var(--neon-blue); letter-spacing: 2px; margin-bottom: 10px;
             text-transform: uppercase; border-bottom: 1px solid rgba(0, 243, 255, 0.2);
-            padding-bottom: 5px; margin-top: 25px;
+            padding-bottom: 5px; margin-top: 20px;
         }
 
-        .info-link {
-            display: flex; align-items: center; gap: 10px;
-            color: var(--text-main); font-size: 13px; margin-bottom: 10px; font-weight: 500;
-        }
-        .info-link i { color: var(--neon-purple); font-size: 14px; width: 18px; text-align: center; }
-
-        .skills-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .skills-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
         .skills-list li {
             font-size: 12px; background: rgba(0, 243, 255, 0.05);
-            padding: 8px 10px; border-radius: 4px; border-left: 2px solid var(--neon-purple);
+            padding: 6px 10px; border-radius: 4px; border-left: 2px solid var(--neon-purple);
         }
         .skills-list li:hover {
             background: rgba(176, 38, 255, 0.15); transform: translateX(5px);
             border-left: 2px solid var(--neon-blue);
         }
 
+        /* Right Column Typography */
         .header-title h1 {
-            font-family: 'Orbitron', sans-serif; font-size: 32px;
+            font-family: 'Orbitron', sans-serif; font-size: 28px; line-height: 1.1;
             background: linear-gradient(to right, var(--neon-blue), #fff);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 15px rgba(0, 243, 255, 0.3); letter-spacing: 1px;
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.3); letter-spacing: 1px; margin-bottom: 5px;
         }
         .header-title p {
-            color: var(--neon-purple); font-size: 14px; font-weight: 600;
-            margin-top: 5px; letter-spacing: 1px; text-transform: uppercase;
+            color: var(--neon-purple); font-size: 13px; font-weight: 600;
+            margin-top: 2px; letter-spacing: 1px; text-transform: uppercase;
         }
 
         .section-title {
             font-family: 'Orbitron', sans-serif; color: var(--text-main);
-            font-size: 16px; margin: 25px 0 12px; display: flex; align-items: center; gap: 8px;
-            border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 5px;
+            font-size: 15px; margin: 15px 0 10px; display: flex; align-items: center; gap: 8px;
+            border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 4px;
         }
         .section-title i { color: var(--neon-blue); }
 
         .summary-text {
-            font-size: 13px; line-height: 1.6; color: var(--text-muted);
-            background: rgba(255,255,255,0.02); padding: 12px; border-radius: 6px;
-            border: 1px solid rgba(255,255,255,0.05);
+            font-size: 12px; line-height: 1.5; color: var(--text-muted);
+            background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.05); margin-bottom: 5px;
         }
 
-        .timeline { display: flex; flex-direction: column; gap: 10px; }
+        .timeline { display: flex; flex-direction: column; gap: 8px; }
         .timeline-item {
-            background: rgba(0, 0, 0, 0.4); padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.4); padding: 10px 12px;
             border-radius: 8px; border: 1px solid rgba(0, 243, 255, 0.1);
         }
         .timeline-item:hover { border-color: var(--neon-purple); box-shadow: 0 0 15px rgba(176, 38, 255, 0.2); }
-        .timeline-header { display: flex; justify-content: space-between; margin-bottom: 4px; }
-        .role-title { font-size: 14px; font-weight: 700; color: #fff; }
+        .timeline-header { display: flex; justify-content: space-between; margin-bottom: 2px; }
+        .role-title { font-size: 13px; font-weight: 700; color: #fff; }
         .company-duration { font-size: 11px; color: var(--neon-blue); font-weight: 600; }
 
         /* HP Certificates Grid */
-        .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; }
+        .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: start; }
         .hp-category-card {
-            background: rgba(255, 255, 255, 0.02); border-radius: 8px; padding: 12px;
+            background: rgba(255, 255, 255, 0.02); border-radius: 8px; padding: 10px;
             border: 1px solid rgba(255, 255, 255, 0.05); height: 100%;
         }
         .hp-category-card:hover {
             background: rgba(0, 243, 255, 0.05); border-color: var(--neon-blue);
         }
         .hp-category-card h4 {
-            font-size: 13px; color: #fff; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
-            border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px;
+            font-size: 12px; color: #fff; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
+            border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 4px;
         }
         .hp-category-card h4 i { color: var(--neon-purple); }
         .hp-courses-list { list-style: none; padding: 0; }
         .hp-courses-list li { 
-            font-size: 11px; color: var(--text-muted); margin-bottom: 5px; 
-            padding-left: 12px; position: relative; line-height: 1.3;
+            font-size: 11px; color: var(--text-muted); margin-bottom: 4px; 
+            padding-left: 12px; position: relative; line-height: 1.2;
         }
         .hp-courses-list li::before { content: "▹"; color: var(--neon-blue); position: absolute; left: 0; top: 0;}
 
@@ -238,6 +240,7 @@
         <i class="fa-solid fa-volume-high"></i> BGM
     </div>
 
+    <!-- Splash Screen -->
     <div id="splash-screen">
         <h2 style="color: #fff; font-family: 'Orbitron'; margin-bottom: 30px; letter-spacing: 4px; font-weight: 300; text-shadow: 0 0 20px var(--neon-blue);">SYSTEM INITIALIZING</h2>
         <button class="launch-btn" onclick="launchCV()">Boot Sequence</button>
@@ -246,28 +249,36 @@
     <div class="cv-wrapper" id="cv-content">
         <div class="a4-container">
             
+            <!-- LEFT COLUMN -->
             <div class="left-column">
-                <div class="profile-img-container cyber-interactive">
-                    <img src="photo_2026-06-19_02-14-34.jpg" alt="Maung Myo Htet Zaw">
+                
+                <!-- NEW COMPACT TOP SECTION -->
+                <div class="top-profile-grid">
+                    <!-- Comms Side (Left) -->
+                    <div class="side-panel">
+                        <div class="section-label-mini"><i class="fa-solid fa-satellite-dish"></i> Comms</div>
+                        <a href="tel:+959693054439" class="info-link-mini cyber-interactive"><i class="fa-solid fa-phone"></i> +95 9693054439</a>
+                        <a href="mailto:mhzcreation.biz@gmail.com" class="info-link-mini cyber-interactive"><i class="fa-solid fa-envelope"></i> mhzcreation.biz@gmail.com</a>
+                        <div class="info-link-mini cyber-interactive"><i class="fa-solid fa-location-crosshairs"></i> Phugyi, Hmawbi, Yangon</div>
+                    </div>
+
+                    <!-- Photo (Center) -->
+                    <div class="profile-img-container compact cyber-interactive">
+                        <img src="photo_2026-06-19_02-14-34.jpg" alt="Maung Myo Htet Zaw">
+                    </div>
+
+                    <!-- Identity Side (Right) -->
+                    <div class="side-panel">
+                        <div class="section-label-mini"><i class="fa-solid fa-fingerprint"></i> Identity</div>
+                        <div class="info-link-mini cyber-interactive"><b>NRC:</b> 5/AhRaTa(N) 112480</div>
+                        <div class="info-link-mini cyber-interactive"><b>DOB:</b> Nov 10, 1994</div>
+                        <div class="info-link-mini cyber-interactive"><b>Father:</b> U Zaw Lwin</div>
+                        <div class="info-link-mini cyber-interactive"><b>Status:</b> Single (5'5")</div>
+                    </div>
                 </div>
 
                 <div>
-                    <div class="section-label"><i class="fa-solid fa-satellite-dish"></i> Comms Link</div>
-                    <a href="tel:+959693054439" style="text-decoration: none;" class="info-link cyber-interactive"><i class="fa-solid fa-phone"></i> +95 9693054439</a>
-                    <a href="mailto:mhzcreation.biz@gmail.com" style="text-decoration: none;" class="info-link cyber-interactive"><i class="fa-solid fa-envelope"></i> mhzcreation.biz@gmail.com</a>
-                    <div class="info-link cyber-interactive"><i class="fa-solid fa-location-crosshairs"></i> Phugyi Village, Hmawbi, Yangon</div>
-                </div>
-
-                <div>
-                    <div class="section-label"><i class="fa-solid fa-fingerprint"></i> Identity</div>
-                    <div class="info-link cyber-interactive"><b>NRC:</b> 5/AhRaTa(N) 112480</div>
-                    <div class="info-link cyber-interactive"><b>DOB:</b> Nov 10, 1994</div>
-                    <div class="info-link cyber-interactive"><b>Father:</b> U Zaw Lwin</div>
-                    <div class="info-link cyber-interactive"><b>Status:</b> Single (5'5")</div>
-                </div>
-
-                <div>
-                    <div class="section-label"><i class="fa-solid fa-microchip"></i> System Core</div>
+                    <div class="section-label" style="margin-top: 10px;"><i class="fa-solid fa-microchip"></i> System Core</div>
                     <ul class="skills-list">
                         <li class="cyber-interactive">AI Programming (Python, C#, Java, JS)</li>
                         <li class="cyber-interactive">N8N Integration & Automation</li>
@@ -293,10 +304,10 @@
                             </ul>
                         </div>
                         <div class="hp-category-card cyber-interactive">
-                            <h4><i class="fa-solid fa-user-tie"></i> Prof. Development (4)</h4>
+                            <h4><i class="fa-solid fa-user-tie"></i> Prof. Dev (4)</h4>
                             <ul class="hp-courses-list">
                                 <li>Professional Networking</li>
-                                <li>Resume Writing & Interviews</li>
+                                <li>Resume & Interviews</li>
                                 <li>Effective Leadership</li>
                                 <li>Success Mindset</li>
                             </ul>
@@ -317,9 +328,9 @@
                                 <li>Critical Thinking in AI</li>
                                 <li>AI for Professionals</li>
                                 <li>AI for Beginners</li>
-                                <li>Customer Experience (CX)</li>
-                                <li>Agile Project Management</li>
-                                <li>Cybersecurity Awareness</li>
+                                <li>Customer Experience</li>
+                                <li>Agile Project Mgmt</li>
+                                <li>Cybersecurity</li>
                                 <li>Data Science & Analytics</li>
                                 <li>Digital Business Skills</li>
                             </ul>
@@ -331,7 +342,7 @@
                                 <li>Your Target Audience</li>
                                 <li>Selling Online</li>
                                 <li>Business Websites</li>
-                                <li>Customer Relationship (CRM)</li>
+                                <li>Customer Relationship</li>
                                 <li>Fundamentals of Selling</li>
                                 <li>Benefits vs. Features</li>
                                 <li>Social Media Marketing</li>
@@ -342,7 +353,7 @@
                             <ul class="hp-courses-list">
                                 <li>Circular Economy</li>
                                 <li>Design Thinking</li>
-                                <li>Starting a Small Business</li>
+                                <li>Starting a Business</li>
                                 <li>Social Entrepreneurship</li>
                                 <li>Strategic Planning</li>
                             </ul>
@@ -352,6 +363,7 @@
 
             </div>
 
+            <!-- RIGHT COLUMN -->
             <div class="right-column">
                 <div class="header-title cyber-interactive">
                     <h1>MAUNG MYO HTET ZAW</h1>
@@ -377,7 +389,7 @@
                         <div class="timeline-item cyber-interactive">
                             <div class="timeline-header">
                                 <div class="role-title">Cashier (Project Event)</div>
-                                <div class="company-duration">Big Bad Wolf Book Sales | Jan 9 - 20, 2020</div>
+                                <div class="company-duration">Big Bad Wolf Book Sales | Jan 2020</div>
                             </div>
                         </div>
                         <div class="timeline-item cyber-interactive">
@@ -420,7 +432,7 @@
                             <div style="font-size: 12px; font-weight: 600; color: #fff;">• Bachelor of Arts (B.A. in History)</div>
                         </div>
                         <div class="timeline-item cyber-interactive" style="padding: 8px 12px;">
-                            <div style="font-size: 12px; font-weight: 600; color: #fff;">• Software Engineer Certificate – HackerRank (Verified)</div>
+                            <div style="font-size: 12px; font-weight: 600; color: #fff;">• Software Engineer Certificate – HackerRank</div>
                             <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Tracks: Problem Solving, Python, C#, Java, SQL, REST API, CSS</div>
                         </div>
                         <div class="timeline-item cyber-interactive" style="padding: 8px 12px;">
@@ -430,10 +442,7 @@
                             <div style="font-size: 12px; font-weight: 600; color: #fff;">• AI in Human Resource Management – OHSC (Enrolled Jun 2026)</div>
                         </div>
                         <div class="timeline-item cyber-interactive" style="padding: 8px 12px;">
-                            <div style="font-size: 12px; font-weight: 600; color: #fff;">• Bookkeeping (Short Course) – OHSC (Enrolled Jun 2026)</div>
-                        </div>
-                        <div class="timeline-item cyber-interactive" style="padding: 8px 12px;">
-                            <div style="font-size: 12px; font-weight: 600; color: #fff;">• Understanding Debits and Credits (Short Course) – OHSC (Enrolled Jun 2026)</div>
+                            <div style="font-size: 12px; font-weight: 600; color: #fff;">• Bookkeeping & Debits and Credits – OHSC (Enrolled Jun 2026)</div>
                         </div>
                         <div class="timeline-item cyber-interactive" style="padding: 8px 12px;">
                             <div style="font-size: 12px; font-weight: 600; color: #fff;">• Office Administration Quiz Certificate – ProProfs</div>
@@ -448,8 +457,8 @@
         </div>
     </div>
 
+    <!-- JS Boot Sequence & Sound Logic -->
     <script>
-        // Web Audio API Setup for Cyberpunk Click Sound
         let audioCtx;
         function initAudio() {
             if (!audioCtx) {
@@ -481,8 +490,8 @@
         let bgmPlaying = false;
 
         function launchCV() {
-            initAudio(); // Initialize sound system
-            playClickSound(); // Play sound for initial button click
+            initAudio(); 
+            playClickSound(); 
 
             var splashScreen = document.getElementById('splash-screen');
             var cvContent = document.getElementById('cv-content');
@@ -493,12 +502,10 @@
                 splashScreen.style.display = 'none';
                 cvContent.classList.add('active');
                 
-                // Start BGM & Show Toggle Button
                 bgMusic.play().then(() => {
                     bgmPlaying = true;
                     bgmToggle.style.display = 'flex';
                 }).catch(e => {
-                    console.log("BGM Autoplay blocked by browser. User needs to toggle manually.");
                     bgmToggle.style.display = 'flex';
                     bgmToggle.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> BGM';
                     bgmToggle.style.color = 'var(--text-muted)';
@@ -506,10 +513,9 @@
             }, 1000);
         }
 
-        // Independent BGM Toggle Button Event
         bgmToggle.addEventListener('click', () => {
             initAudio();
-            playClickSound(); // Make sound when clicking the toggle itself
+            playClickSound(); 
             if (bgmPlaying) {
                 bgMusic.pause();
                 bgmToggle.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> BGM';
@@ -523,14 +529,12 @@
             }
         });
 
-        // Add Click Sound Effect to all interactive elements
         document.querySelectorAll('.cyber-interactive').forEach(el => {
             el.addEventListener('mousedown', () => {
                 initAudio();
                 playClickSound();
             });
         });
-
     </script>
 </body>
 </html>
