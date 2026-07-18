@@ -231,6 +231,21 @@
         .pdf-link:hover {
             color: var(--neon-blue);
         }
+        
+        /* New View Badge Styling */
+        .view-badge {
+            display: inline-block;
+            font-size: 12px;
+            color: var(--neon-green);
+            margin-left: 10px;
+            animation: pulse-text 1.5s infinite;
+            font-weight: 700;
+        }
+        @keyframes pulse-text {
+            0% { opacity: 1; text-shadow: 0 0 5px var(--neon-green); }
+            50% { opacity: 0.5; text-shadow: none; }
+            100% { opacity: 1; text-shadow: 0 0 5px var(--neon-green); }
+        }
 
         /* --- MOBILE RESPONSIVE MEDIA QUERIES --- */
         @media (max-width: 768px) {
@@ -477,11 +492,14 @@
                     <div class="section-title"><i class="fa-solid fa-graduation-cap"></i> Databanks & Certifications</div>
                     <div class="timeline" style="gap: 8px;">
                         
-                        <!-- NEW MY INFO ZIP LINK (AT THE TOP) -->
+                        <!-- MY INFO ZIP LINK -->
                         <div class="timeline-item cyber-interactive" style="padding: 10px 14px; border-left: 3px solid var(--neon-blue);">
                             <a href="My Info-20260718T123919Z-1-001.zip" target="_blank" class="pdf-link">
-                                <div style="font-size: 14px; font-weight: 600;">• Personal Info & Documents Archive <i class="fa-solid fa-folder-open" style="margin-left: 5px; color: var(--neon-blue); font-size: 16px;"></i></div>
-                                <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px; padding-left: 10px;">(Click to download ZIP archive)</div>
+                                <div style="font-size: 14px; font-weight: 600;">
+                                    • Personal Info & Documents Archive 
+                                    <i class="fa-solid fa-folder-open" style="margin-left: 5px; color: var(--neon-blue); font-size: 16px;"></i> 
+                                    <span class="view-badge">👉 View 👈</span>
+                                </div>
                             </a>
                         </div>
                         
@@ -492,15 +510,22 @@
                         <!-- HackerRank Link -->
                         <div class="timeline-item cyber-interactive" style="padding: 10px 14px; border-left: 3px solid #2EC866;">
                             <a href="HackerRank_Certificates_Compiled (1).pdf" target="_blank" class="pdf-link">
-                                <div style="font-size: 14px; font-weight: 600;">• Software Engineer Certificate <i class="fa-brands fa-hackerrank" style="margin-left: 5px; color: #2EC866; font-size: 16px;"></i></div>
+                                <div style="font-size: 14px; font-weight: 600;">
+                                    • Software Engineer Certificate 
+                                    <i class="fa-brands fa-hackerrank" style="margin-left: 5px; color: #2EC866; font-size: 16px;"></i>
+                                    <span class="view-badge">👉 View 👈</span>
+                                </div>
                             </a>
                         </div>
                         
                         <!-- Professional Development ZIP -->
                         <div class="timeline-item cyber-interactive" style="padding: 10px 14px; border-left: 3px solid var(--neon-purple);">
                             <a href="Profession Development-20260718T122435Z-1-001.zip" target="_blank" class="pdf-link">
-                                <div style="font-size: 14px; font-weight: 600;">• Professional Development Certificates <i class="fa-solid fa-file-zipper" style="margin-left: 5px; color: var(--neon-purple); font-size: 16px;"></i></div>
-                                <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px; padding-left: 10px;">(Click to download ZIP archive)</div>
+                                <div style="font-size: 14px; font-weight: 600;">
+                                    • Professional Development Certificates 
+                                    <i class="fa-solid fa-file-zipper" style="margin-left: 5px; color: var(--neon-purple); font-size: 16px;"></i>
+                                    <span class="view-badge">👉 View 👈</span>
+                                </div>
                             </a>
                         </div>
                         
