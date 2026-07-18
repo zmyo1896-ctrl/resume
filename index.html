@@ -30,7 +30,7 @@
             justify-content: center;
             align-items: flex-start;
             overflow-x: hidden;
-            padding: 20px 10px;
+            padding: 80px 10px 40px; /* Added top padding for Nav Bar */
         }
 
         /* Background Effects */
@@ -48,6 +48,26 @@
         }
 
         @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
+
+        /* --- NEW: Top Navigation Menu --- */
+        #top-nav {
+            position: fixed; top: 20px; left: 20px; z-index: 10000;
+            display: none; /* Hidden until Boot Sequence finishes */
+            gap: 15px;
+        }
+        .nav-btn {
+            background: rgba(0, 0, 0, 0.6); border: 1px solid var(--neon-purple);
+            color: var(--text-muted); padding: 8px 20px; border-radius: 4px;
+            font-family: 'Orbitron', sans-serif; font-size: 13px; font-weight: 700;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 1px;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px rgba(176, 38, 255, 0.1);
+        }
+        .nav-btn:hover { border-color: var(--neon-blue); color: var(--neon-blue); }
+        .nav-btn.active {
+            background: rgba(0, 243, 255, 0.1); border-color: var(--neon-blue);
+            color: var(--neon-blue); box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+        }
 
         /* BGM Toggle */
         #bgm-toggle {
@@ -76,173 +96,126 @@
             box-shadow: 0 0 15px rgba(0, 243, 255, 0.2), inset 0 0 10px rgba(0, 243, 255, 0.1);
             transition: all 0.3s;
         }
-        .launch-btn:hover {
-            background: var(--neon-blue); color: #000;
-            box-shadow: 0 0 30px var(--neon-blue), inset 0 0 20px #fff;
+        .launch-btn:hover { background: var(--neon-blue); color: #000; box-shadow: 0 0 30px var(--neon-blue), inset 0 0 20px #fff; }
+
+        /* --- CV Container View --- */
+        #cv-view {
+            opacity: 0; transform: scale(0.95); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            display: none; width: 100%; max-width: 210mm;
+        }
+        #cv-view.active { opacity: 1; transform: scale(1); display: flex; }
+
+        /* --- NEW: Badges Gallery View --- */
+        #badges-view {
+            opacity: 0; transform: scale(0.95); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            display: none; width: 100%; max-width: 1000px; flex-direction: column; align-items: center;
+        }
+        #badges-view.active { opacity: 1; transform: scale(1); display: flex; }
+
+        .badges-gallery-title {
+            font-family: 'Orbitron', sans-serif; font-size: 28px; color: #fff;
+            text-transform: uppercase; letter-spacing: 3px; margin-bottom: 30px;
+            text-shadow: 0 0 15px var(--neon-purple); border-bottom: 2px solid var(--neon-purple); padding-bottom: 10px;
         }
 
-        /* CV Container - Optimized for A4 Aspect Ratio */
-        .cv-wrapper {
-            opacity: 0; transform: scale(0.95);
-            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-            display: none; width: 100%; max-width: 210mm; /* A4 Width */
+        .badges-grid-container {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px; width: 100%;
         }
-        .cv-wrapper.active { opacity: 1; transform: scale(1); display: flex; }
 
+        .badge-display-card {
+            background: rgba(20, 22, 35, 0.8); border: 1px solid rgba(176, 38, 255, 0.3);
+            border-radius: 12px; padding: 25px; text-align: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5), inset 0 0 15px rgba(176, 38, 255, 0.05);
+            transition: 0.3s;
+        }
+        .badge-display-card:hover {
+            transform: translateY(-8px); border-color: var(--neon-blue);
+            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.2);
+        }
+        .badge-display-card img {
+            width: 140px; height: 140px; object-fit: contain; margin-bottom: 15px;
+            filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.5));
+            border-radius: 50%; border: 2px solid rgba(255,255,255,0.1);
+        }
+        .badge-display-card h3 {
+            font-family: 'Orbitron', sans-serif; font-size: 14px; color: var(--neon-blue);
+            letter-spacing: 1px; margin-bottom: 5px; text-transform: uppercase;
+        }
+        .badge-display-card p { font-size: 12px; color: var(--text-muted); }
+
+        /* A4 Wrapper Shared Classes */
         .a4-container {
-            width: 100%; height: auto; 
-            background: var(--glass-bg);
+            width: 100%; height: auto; background: var(--glass-bg);
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
+            border: 1px solid var(--glass-border); border-radius: 15px; display: flex; position: relative;
             box-shadow: 0 0 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(0, 243, 255, 0.05);
-            border-radius: 15px; display: flex; overflow: hidden; position: relative;
         }
-
         .a4-container::before {
             content: ''; position: absolute; top: 0; left: 50%; width: 1px; height: 100%;
-            background: linear-gradient(to bottom, transparent, var(--neon-blue), var(--neon-purple), transparent);
-            opacity: 0.6;
+            background: linear-gradient(to bottom, transparent, var(--neon-blue), var(--neon-purple), transparent); opacity: 0.6;
         }
 
         .cyber-interactive { cursor: pointer; transition: 0.2s; }
         .cyber-interactive:active { transform: scale(0.96) !important; filter: brightness(1.5); }
 
-        /* Columns */
+        /* CV Columns */
         .left-column { width: 50%; padding: 25px 20px; position: relative; z-index: 2; background: rgba(0,0,0,0.2); }
         .right-column { width: 50%; padding: 25px 25px; z-index: 2; position: relative; }
 
-        /* NEW: Top Profile Grid (Comms + Photo + Identity) */
-        .top-profile-grid {
-            display: flex; justify-content: space-between; align-items: center;
-            gap: 10px; margin-bottom: 20px; width: 100%;
-        }
-        .side-panel {
-            flex: 1; min-width: 0; /* Prevents overflow */
-        }
-        
+        /* CV Top Profile Grid */
+        .top-profile-grid { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 20px; width: 100%; }
+        .side-panel { flex: 1; min-width: 0; }
         .profile-img-container.compact {
-            width: 90px; height: 90px; margin: 0; flex-shrink: 0;
-            border-radius: 50%; padding: 3px;
+            width: 90px; height: 90px; margin: 0; flex-shrink: 0; border-radius: 50%; padding: 3px;
             background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
-            box-shadow: 0 0 15px rgba(176, 38, 255, 0.4);
-            animation: pulse-glow 3s infinite;
+            box-shadow: 0 0 15px rgba(176, 38, 255, 0.4); animation: pulse-glow 3s infinite;
         }
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 10px rgba(0, 243, 255, 0.3); }
-            50% { box-shadow: 0 0 25px rgba(176, 38, 255, 0.6); }
-            100% { box-shadow: 0 0 10px rgba(0, 243, 255, 0.3); }
-        }
-        .profile-img-container.compact img {
-            width: 100%; height: 100%; object-fit: cover;
-            border-radius: 50%; border: 2px solid #0a0b10;
-        }
-
-        /* Mini Labels & Links for Top Grid */
-        .section-label-mini {
-            font-family: 'Orbitron', sans-serif; font-size: 11px;
-            color: var(--neon-blue); letter-spacing: 1px; margin-bottom: 8px;
-            text-transform: uppercase; border-bottom: 1px solid rgba(0, 243, 255, 0.2);
-            padding-bottom: 3px;
-        }
-        .info-link-mini {
-            display: flex; align-items: flex-start; gap: 5px;
-            color: var(--text-main); font-size: 11px; margin-bottom: 6px; font-weight: 500;
-            text-decoration: none; line-height: 1.3; word-break: break-word;
-        }
+        @keyframes pulse-glow { 0% { box-shadow: 0 0 10px rgba(0, 243, 255, 0.3); } 50% { box-shadow: 0 0 25px rgba(176, 38, 255, 0.6); } 100% { box-shadow: 0 0 10px rgba(0, 243, 255, 0.3); } }
+        .profile-img-container.compact img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 2px solid #0a0b10; }
+        .section-label-mini { font-family: 'Orbitron', sans-serif; font-size: 11px; color: var(--neon-blue); letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase; border-bottom: 1px solid rgba(0, 243, 255, 0.2); padding-bottom: 3px; }
+        .info-link-mini { display: flex; align-items: flex-start; gap: 5px; color: var(--text-main); font-size: 11px; margin-bottom: 6px; font-weight: 500; text-decoration: none; line-height: 1.3; word-break: break-word; }
         .info-link-mini i { color: var(--neon-purple); font-size: 11px; width: 14px; text-align: center; margin-top: 2px;}
-
-        /* Standard Section Labels */
-        .section-label {
-            font-family: 'Orbitron', sans-serif; font-size: 13px;
-            color: var(--neon-blue); letter-spacing: 2px; margin-bottom: 10px;
-            text-transform: uppercase; border-bottom: 1px solid rgba(0, 243, 255, 0.2);
-            padding-bottom: 5px; margin-top: 20px;
-        }
+        .section-label { font-family: 'Orbitron', sans-serif; font-size: 13px; color: var(--neon-blue); letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase; border-bottom: 1px solid rgba(0, 243, 255, 0.2); padding-bottom: 5px; margin-top: 20px; }
 
         .skills-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-        .skills-list li {
-            font-size: 12px; background: rgba(0, 243, 255, 0.05);
-            padding: 6px 10px; border-radius: 4px; border-left: 2px solid var(--neon-purple);
-        }
-        .skills-list li:hover {
-            background: rgba(176, 38, 255, 0.15); transform: translateX(5px);
-            border-left: 2px solid var(--neon-blue);
-        }
+        .skills-list li { font-size: 12px; background: rgba(0, 243, 255, 0.05); padding: 6px 10px; border-radius: 4px; border-left: 2px solid var(--neon-purple); }
+        .skills-list li:hover { background: rgba(176, 38, 255, 0.15); transform: translateX(5px); border-left: 2px solid var(--neon-blue); }
 
-        /* Right Column Typography */
-        .header-title h1 {
-            font-family: 'Orbitron', sans-serif; font-size: 28px; line-height: 1.1;
-            background: linear-gradient(to right, var(--neon-blue), #fff);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 15px rgba(0, 243, 255, 0.3); letter-spacing: 1px; margin-bottom: 5px;
-        }
-        .header-title p {
-            color: var(--neon-purple); font-size: 13px; font-weight: 600;
-            margin-top: 2px; letter-spacing: 1px; text-transform: uppercase;
-        }
-
-        .section-title {
-            font-family: 'Orbitron', sans-serif; color: var(--text-main);
-            font-size: 15px; margin: 15px 0 10px; display: flex; align-items: center; gap: 8px;
-            border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 4px;
-        }
+        .header-title h1 { font-family: 'Orbitron', sans-serif; font-size: 28px; line-height: 1.1; background: linear-gradient(to right, var(--neon-blue), #fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 15px rgba(0, 243, 255, 0.3); letter-spacing: 1px; margin-bottom: 5px; }
+        .header-title p { color: var(--neon-purple); font-size: 13px; font-weight: 600; margin-top: 2px; letter-spacing: 1px; text-transform: uppercase; }
+        .section-title { font-family: 'Orbitron', sans-serif; color: var(--text-main); font-size: 15px; margin: 15px 0 10px; display: flex; align-items: center; gap: 8px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 4px; }
         .section-title i { color: var(--neon-blue); }
-
-        .summary-text {
-            font-size: 12px; line-height: 1.5; color: var(--text-muted);
-            background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px;
-            border: 1px solid rgba(255,255,255,0.05); margin-bottom: 5px;
-        }
+        .summary-text { font-size: 12px; line-height: 1.5; color: var(--text-muted); background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 5px; }
 
         .timeline { display: flex; flex-direction: column; gap: 8px; }
-        .timeline-item {
-            background: rgba(0, 0, 0, 0.4); padding: 10px 12px;
-            border-radius: 8px; border: 1px solid rgba(0, 243, 255, 0.1);
-        }
+        .timeline-item { background: rgba(0, 0, 0, 0.4); padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(0, 243, 255, 0.1); }
         .timeline-item:hover { border-color: var(--neon-purple); box-shadow: 0 0 15px rgba(176, 38, 255, 0.2); }
         .timeline-header { display: flex; justify-content: space-between; margin-bottom: 2px; }
         .role-title { font-size: 13px; font-weight: 700; color: #fff; }
         .company-duration { font-size: 11px; color: var(--neon-blue); font-weight: 600; }
 
-        /* HP Certificates Grid */
+        /* HP Certificates Grid for CV */
         .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: start; }
-        .hp-category-card {
-            background: rgba(255, 255, 255, 0.02); border-radius: 8px; padding: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.05); height: 100%;
-        }
-        .hp-category-card:hover {
-            background: rgba(0, 243, 255, 0.05); border-color: var(--neon-blue);
-        }
-        .hp-category-card h4 {
-            font-size: 12px; color: #fff; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
-            border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 4px;
-        }
-        .hp-category-card h4 i { color: var(--neon-purple); }
+        .hp-category-card { background: rgba(255, 255, 255, 0.02); border-radius: 8px; padding: 10px; border: 1px solid rgba(255, 255, 255, 0.05); height: 100%; }
+        .hp-category-card:hover { background: rgba(0, 243, 255, 0.05); border-color: var(--neon-blue); }
+        .category-title-wrapper { display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; margin-bottom: 8px; }
+        .hp-badge { width: 35px; height: 35px; border-radius: 50%; box-shadow: 0 0 10px rgba(0, 243, 255, 0.4); border: 1px solid rgba(0, 243, 255, 0.3); object-fit: cover; }
+        .hp-category-card h4 { font-size: 12px; color: #fff; margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
         .hp-courses-list { list-style: none; padding: 0; }
-        .hp-courses-list li { 
-            font-size: 11px; color: var(--text-muted); margin-bottom: 4px; 
-            padding-left: 12px; position: relative; line-height: 1.2;
-        }
+        .hp-courses-list li { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; padding-left: 12px; position: relative; line-height: 1.2; }
         .hp-courses-list li::before { content: "▹"; color: var(--neon-blue); position: absolute; left: 0; top: 0;}
 
         /* --- MOBILE RESPONSIVE MEDIA QUERIES --- */
         @media (max-width: 768px) {
-            .a4-container {
-                flex-direction: column;
-            }
-            .a4-container::before {
-                display: none; /* ဖုန်းနဲ့ကြည့်ရင် အလယ်ကမျဉ်းကြောင်းကို ဖျောက်ထားပါမယ် */
-            }
-            .left-column, .right-column {
-                width: 100%;
-                padding: 20px; 
-            }
-            .cert-grid {
-                grid-template-columns: 1fr; /* ဖုန်းမှာ Certificate Card တွေကို တစ်တန်းတည်းပြမယ် */
-            }
-            .cv-wrapper {
-                margin-top: 40px; /* BGM ခလုတ်နဲ့ မထပ်အောင် နေရာချန်ထားပါမယ် */
-            }
+            body { padding-top: 70px; }
+            #top-nav { gap: 10px; top: 15px; left: 15px; right: 15px; display: flex; justify-content: center;}
+            .nav-btn { font-size: 11px; padding: 8px 12px; }
+            .a4-container { flex-direction: column; }
+            .a4-container::before { display: none; }
+            .left-column, .right-column { width: 100%; padding: 20px; }
+            .cert-grid { grid-template-columns: 1fr; }
+            .badges-gallery-title { font-size: 20px; }
         }
     </style>
 </head>
@@ -255,6 +228,16 @@
         <source src="bgm.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- NEW Navigation Menu -->
+    <div id="top-nav">
+        <button id="btn-cv" class="nav-btn active cyber-interactive" onclick="switchView('cv')">
+            <i class="fa-solid fa-id-card"></i> Main System
+        </button>
+        <button id="btn-badges" class="nav-btn cyber-interactive" onclick="switchView('badges')">
+            <i class="fa-solid fa-award"></i> Badges Database
+        </button>
+    </div>
+
     <div id="bgm-toggle" class="cyber-interactive">
         <i class="fa-solid fa-volume-high"></i> BGM
     </div>
@@ -265,15 +248,13 @@
         <button class="launch-btn" onclick="launchCV()">Boot Sequence</button>
     </div>
 
-    <div class="cv-wrapper" id="cv-content">
+    <!-- VIEW 1: MAIN CV SYSTEM -->
+    <div id="cv-view" class="active">
         <div class="a4-container">
             
             <!-- LEFT COLUMN -->
             <div class="left-column">
-                
-                <!-- NEW COMPACT TOP SECTION -->
                 <div class="top-profile-grid">
-                    <!-- Comms Side (Left) -->
                     <div class="side-panel">
                         <div class="section-label-mini"><i class="fa-solid fa-satellite-dish"></i> Comms</div>
                         <a href="tel:+959693054439" class="info-link-mini cyber-interactive"><i class="fa-solid fa-phone"></i> +95 9693054439</a>
@@ -281,12 +262,10 @@
                         <div class="info-link-mini cyber-interactive"><i class="fa-solid fa-location-crosshairs"></i> Phugyi, Hmawbi, Yangon</div>
                     </div>
 
-                    <!-- Photo (Center) -->
                     <div class="profile-img-container compact cyber-interactive">
                         <img src="photo_2026-06-19_02-14-34.jpg" alt="Maung Myo Htet Zaw">
                     </div>
 
-                    <!-- Identity Side (Right) -->
                     <div class="side-panel">
                         <div class="section-label-mini"><i class="fa-solid fa-fingerprint"></i> Identity</div>
                         <div class="info-link-mini cyber-interactive"><b>NRC:</b> 5/AhRaTa(N) 112480</div>
@@ -313,8 +292,12 @@
                 <div>
                     <div class="section-label"><i class="fa-solid fa-database"></i> HP Life Certs (38)</div>
                     <div class="cert-grid">
+                        
                         <div class="hp-category-card cyber-interactive">
-                            <h4><i class="fa-solid fa-comments"></i> Communication (4)</h4>
+                            <div class="category-title-wrapper">
+                                <img src="comms.jpg" class="hp-badge" alt="Communication">
+                                <h4>Communication (4)</h4>
+                            </div>
                             <ul class="hp-courses-list">
                                 <li>Business Email</li>
                                 <li>Effective Presentations</li>
@@ -322,8 +305,12 @@
                                 <li>Presenting Data</li>
                             </ul>
                         </div>
+                        
                         <div class="hp-category-card cyber-interactive">
-                            <h4><i class="fa-solid fa-user-tie"></i> Prof. Dev (4)</h4>
+                            <div class="category-title-wrapper">
+                                <img src="career.jpg" class="hp-badge" alt="Prof Dev">
+                                <h4>Prof. Dev (4)</h4>
+                            </div>
                             <ul class="hp-courses-list">
                                 <li>Professional Networking</li>
                                 <li>Resume & Interviews</li>
@@ -331,8 +318,12 @@
                                 <li>Success Mindset</li>
                             </ul>
                         </div>
+                        
                         <div class="hp-category-card cyber-interactive">
-                            <h4><i class="fa-solid fa-chart-pie"></i> Finance (5)</h4>
+                            <div class="category-title-wrapper">
+                                <img src="finance.jpg" class="hp-badge" alt="Finance">
+                                <h4>Finance (5)</h4>
+                            </div>
                             <ul class="hp-courses-list">
                                 <li>Cash Flow</li>
                                 <li>Basics of Finance</li>
@@ -341,8 +332,12 @@
                                 <li>Sales Forecasting</li>
                             </ul>
                         </div>
+                        
                         <div class="hp-category-card cyber-interactive">
-                            <h4><i class="fa-solid fa-laptop-code"></i> Digital Skills (8)</h4>
+                            <div class="category-title-wrapper">
+                                <img src="digital.jpg" class="hp-badge" alt="Digital Skills">
+                                <h4>Digital Skills (8)</h4>
+                            </div>
                             <ul class="hp-courses-list">
                                 <li>Critical Thinking in AI</li>
                                 <li>AI for Professionals</li>
@@ -354,8 +349,12 @@
                                 <li>Digital Business Skills</li>
                             </ul>
                         </div>
+                        
                         <div class="hp-category-card cyber-interactive">
-                            <h4><i class="fa-solid fa-bullhorn"></i> Marketing (8)</h4>
+                            <div class="category-title-wrapper">
+                                <img src="marketing.jpg" class="hp-badge" alt="Marketing">
+                                <h4>Marketing (8)</h4>
+                            </div>
                             <ul class="hp-courses-list">
                                 <li>Unique Value Proposition</li>
                                 <li>Your Target Audience</li>
@@ -367,8 +366,12 @@
                                 <li>Social Media Marketing</li>
                             </ul>
                         </div>
+                        
                         <div class="hp-category-card cyber-interactive">
-                            <h4><i class="fa-solid fa-lightbulb"></i> Entrepreneurship (9)</h4>
+                            <div class="category-title-wrapper">
+                                <img src="inno.jpg" class="hp-badge" alt="Entrepreneurship">
+                                <h4>Entrepreneurship (9)</h4>
+                            </div>
                             <ul class="hp-courses-list">
                                 <li>Circular Economy</li>
                                 <li>Design Thinking</li>
@@ -377,9 +380,9 @@
                                 <li>Strategic Planning</li>
                             </ul>
                         </div>
+
                     </div>
                 </div>
-
             </div>
 
             <!-- RIGHT COLUMN -->
@@ -452,7 +455,6 @@
                         </div>
                         <div class="timeline-item cyber-interactive" style="padding: 8px 12px;">
                             <div style="font-size: 12px; font-weight: 600; color: #fff;">• Software Engineer Certificate – HackerRank</div>
-                            <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Tracks: Problem Solving, Python, C#, Java, SQL, REST API, CSS</div>
                         </div>
                         <div class="timeline-item cyber-interactive" style="padding: 8px 12px;">
                             <div style="font-size: 12px; font-weight: 600; color: #fff;">• LCCI (Accounting Framework) – Currently Pursuing</div>
@@ -476,7 +478,63 @@
         </div>
     </div>
 
-    <!-- JS Boot Sequence & Sound Logic -->
+    <!-- VIEW 2: BADGES GALLERY (NEW PAGE) -->
+    <div id="badges-view">
+        <h2 class="badges-gallery-title cyber-interactive"><i class="fa-solid fa-medal"></i> HP Life Badges Archive</h2>
+        
+        <div class="badges-grid-container">
+            <!-- Badge 1: Ambassador (The Crown Jewel) -->
+            <div class="badge-display-card cyber-interactive">
+                <img src="ambassador.jpg" alt="HP LIFE Ambassador">
+                <h3>HP LIFE Ambassador</h3>
+                <p>Global Recognition</p>
+            </div>
+            
+            <!-- Badge 2: Career -->
+            <div class="badge-display-card cyber-interactive">
+                <img src="career.jpg" alt="Career Explorer">
+                <h3>Career Explorer</h3>
+                <p>Professional Development</p>
+            </div>
+
+            <!-- Badge 3: Comms -->
+            <div class="badge-display-card cyber-interactive">
+                <img src="comms.jpg" alt="Communication Clarity">
+                <h3>Communication Clarity</h3>
+                <p>Business Communications</p>
+            </div>
+
+            <!-- Badge 4: Digital -->
+            <div class="badge-display-card cyber-interactive">
+                <img src="digital.jpg" alt="Digital Skills Builder">
+                <h3>Digital Skills Builder</h3>
+                <p>Tech & Analytics</p>
+            </div>
+
+            <!-- Badge 5: Finance -->
+            <div class="badge-display-card cyber-interactive">
+                <img src="finance.jpg" alt="Finance Focus">
+                <h3>Finance Focus</h3>
+                <p>Accounting & Cash Flow</p>
+            </div>
+
+            <!-- Badge 6: Innovation / Entrepreneurship -->
+            <div class="badge-display-card cyber-interactive">
+                <img src="inno.jpg" alt="Innovation Insights">
+                <h3>Innovation Insights</h3>
+                <p>Entrepreneurship & Planning</p>
+            </div>
+
+            <!-- Badge 7: Marketing -->
+            <div class="badge-display-card cyber-interactive">
+                <img src="marketing.jpg" alt="Marketing Basics">
+                <h3>Marketing Basics</h3>
+                <p>Sales & Social Media</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS Boot Sequence & Logic -->
     <script>
         let audioCtx;
         function initAudio() {
@@ -513,13 +571,15 @@
             playClickSound(); 
 
             var splashScreen = document.getElementById('splash-screen');
-            var cvContent = document.getElementById('cv-content');
+            var cvView = document.getElementById('cv-view');
+            var topNav = document.getElementById('top-nav');
             
             splashScreen.style.opacity = '0';
             
             setTimeout(function() {
                 splashScreen.style.display = 'none';
-                cvContent.classList.add('active');
+                cvView.classList.add('active');
+                topNav.style.display = 'flex'; // Show navigation after boot
                 
                 bgMusic.play().then(() => {
                     bgmPlaying = true;
@@ -530,6 +590,37 @@
                     bgmToggle.style.color = 'var(--text-muted)';
                 });
             }, 1000);
+        }
+
+        // Handle View Switching (CV vs Badges)
+        function switchView(viewName) {
+            initAudio();
+            playClickSound();
+
+            const cvView = document.getElementById('cv-view');
+            const badgesView = document.getElementById('badges-view');
+            const btnCv = document.getElementById('btn-cv');
+            const btnBadges = document.getElementById('btn-badges');
+
+            if (viewName === 'cv') {
+                cvView.style.display = 'flex';
+                setTimeout(() => cvView.style.opacity = '1', 50);
+                
+                badgesView.style.display = 'none';
+                badgesView.style.opacity = '0';
+                
+                btnCv.classList.add('active');
+                btnBadges.classList.remove('active');
+            } else if (viewName === 'badges') {
+                badgesView.style.display = 'flex';
+                setTimeout(() => badgesView.style.opacity = '1', 50);
+                
+                cvView.style.display = 'none';
+                cvView.style.opacity = '0';
+                
+                btnBadges.classList.add('active');
+                btnCv.classList.remove('active');
+            }
         }
 
         bgmToggle.addEventListener('click', () => {
@@ -548,6 +639,7 @@
             }
         });
 
+        // Add sound to interactive elements
         document.querySelectorAll('.cyber-interactive').forEach(el => {
             el.addEventListener('mousedown', () => {
                 initAudio();
