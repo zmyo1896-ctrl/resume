@@ -225,6 +225,25 @@
         }
         .hp-courses-list li::before { content: "▹"; color: var(--neon-blue); position: absolute; left: 0; top: 0;}
 
+        /* --- MOBILE RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 768px) {
+            .a4-container {
+                flex-direction: column;
+            }
+            .a4-container::before {
+                display: none; /* ဖုန်းနဲ့ကြည့်ရင် အလယ်ကမျဉ်းကြောင်းကို ဖျောက်ထားပါမယ် */
+            }
+            .left-column, .right-column {
+                width: 100%;
+                padding: 20px; 
+            }
+            .cert-grid {
+                grid-template-columns: 1fr; /* ဖုန်းမှာ Certificate Card တွေကို တစ်တန်းတည်းပြမယ် */
+            }
+            .cv-wrapper {
+                margin-top: 40px; /* BGM ခလုတ်နဲ့ မထပ်အောင် နေရာချန်ထားပါမယ် */
+            }
+        }
     </style>
 </head>
 <body>
