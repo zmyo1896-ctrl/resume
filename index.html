@@ -30,7 +30,7 @@
             justify-content: center;
             align-items: flex-start;
             overflow-x: hidden;
-            padding: 80px 10px 40px; /* Added top padding for Nav Bar */
+            padding: 80px 10px 40px; 
         }
 
         /* Background Effects */
@@ -49,10 +49,10 @@
 
         @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
 
-        /* --- NEW: Top Navigation Menu --- */
+        /* --- Top Navigation Menu --- */
         #top-nav {
             position: fixed; top: 20px; left: 20px; z-index: 10000;
-            display: none; /* Hidden until Boot Sequence finishes */
+            display: none; 
             gap: 15px;
         }
         .nav-btn {
@@ -105,7 +105,7 @@
         }
         #cv-view.active { opacity: 1; transform: scale(1); display: flex; }
 
-        /* --- NEW: Badges Gallery View --- */
+        /* --- Badges Gallery View --- */
         #badges-view {
             opacity: 0; transform: scale(0.95); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
             display: none; width: 100%; max-width: 1000px; flex-direction: column; align-items: center;
@@ -119,8 +119,8 @@
         }
 
         .badges-grid-container {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px; width: 100%;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px; width: 100%; padding: 10px;
         }
 
         .badge-display-card {
@@ -133,14 +133,19 @@
             transform: translateY(-8px); border-color: var(--neon-blue);
             box-shadow: 0 10px 30px rgba(0, 243, 255, 0.2);
         }
+        
+        /* Larger Glowing Square Badges for Gallery */
         .badge-display-card img {
-            width: 140px; height: 140px; object-fit: contain; margin-bottom: 15px;
-            filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.5));
-            border-radius: 50%; border: 2px solid rgba(255,255,255,0.1);
+            width: 150px; height: 150px; object-fit: contain; margin-bottom: 15px;
+            border-radius: 12px; 
+            border: 2px solid rgba(0, 243, 255, 0.5); /* Cyberpunk Border */
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.4); /* Cyberpunk Glow */
+            background: #fff; /* White background for clean blending */
+            padding: 2px;
         }
         .badge-display-card h3 {
-            font-family: 'Orbitron', sans-serif; font-size: 14px; color: var(--neon-blue);
-            letter-spacing: 1px; margin-bottom: 5px; text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif; font-size: 15px; color: var(--neon-blue);
+            letter-spacing: 1px; margin-bottom: 5px; text-transform: uppercase; margin-top: 8px;
         }
         .badge-display-card p { font-size: 12px; color: var(--text-muted); }
 
@@ -166,6 +171,7 @@
         /* CV Top Profile Grid */
         .top-profile-grid { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 20px; width: 100%; }
         .side-panel { flex: 1; min-width: 0; }
+        
         .profile-img-container.compact {
             width: 90px; height: 90px; margin: 0; flex-shrink: 0; border-radius: 50%; padding: 3px;
             background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
@@ -173,6 +179,7 @@
         }
         @keyframes pulse-glow { 0% { box-shadow: 0 0 10px rgba(0, 243, 255, 0.3); } 50% { box-shadow: 0 0 25px rgba(176, 38, 255, 0.6); } 100% { box-shadow: 0 0 10px rgba(0, 243, 255, 0.3); } }
         .profile-img-container.compact img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 2px solid #0a0b10; }
+        
         .section-label-mini { font-family: 'Orbitron', sans-serif; font-size: 11px; color: var(--neon-blue); letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase; border-bottom: 1px solid rgba(0, 243, 255, 0.2); padding-bottom: 3px; }
         .info-link-mini { display: flex; align-items: flex-start; gap: 5px; color: var(--text-main); font-size: 11px; margin-bottom: 6px; font-weight: 500; text-decoration: none; line-height: 1.3; word-break: break-word; }
         .info-link-mini i { color: var(--neon-purple); font-size: 11px; width: 14px; text-align: center; margin-top: 2px;}
@@ -199,9 +206,22 @@
         .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: start; }
         .hp-category-card { background: rgba(255, 255, 255, 0.02); border-radius: 8px; padding: 10px; border: 1px solid rgba(255, 255, 255, 0.05); height: 100%; }
         .hp-category-card:hover { background: rgba(0, 243, 255, 0.05); border-color: var(--neon-blue); }
-        .category-title-wrapper { display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; margin-bottom: 8px; }
-        .hp-badge { width: 35px; height: 35px; border-radius: 50%; box-shadow: 0 0 10px rgba(0, 243, 255, 0.4); border: 1px solid rgba(0, 243, 255, 0.3); object-fit: cover; }
-        .hp-category-card h4 { font-size: 12px; color: #fff; margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+        
+        .category-title-wrapper { display: flex; align-items: center; gap: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; margin-bottom: 8px; }
+        
+        /* Larger Glowing Square Badges for CV Layout */
+        .hp-badge { 
+            width: 55px; /* Increased size significantly */
+            height: 55px; 
+            object-fit: contain; 
+            border-radius: 8px; /* Smooth rounded square */
+            box-shadow: 0 0 12px rgba(0, 243, 255, 0.5); /* Cyberpunk Glow */
+            border: 1px solid rgba(0, 243, 255, 0.5);
+            background: #fff;
+            padding: 2px; 
+        }
+        
+        .hp-category-card h4 { font-size: 13px; color: #fff; margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
         .hp-courses-list { list-style: none; padding: 0; }
         .hp-courses-list li { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; padding-left: 12px; position: relative; line-height: 1.2; }
         .hp-courses-list li::before { content: "▹"; color: var(--neon-blue); position: absolute; left: 0; top: 0;}
@@ -228,7 +248,7 @@
         <source src="bgm.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- NEW Navigation Menu -->
+    <!-- Navigation Menu -->
     <div id="top-nav">
         <button id="btn-cv" class="nav-btn active cyber-interactive" onclick="switchView('cv')">
             <i class="fa-solid fa-id-card"></i> Main System
@@ -483,7 +503,7 @@
         <h2 class="badges-gallery-title cyber-interactive"><i class="fa-solid fa-medal"></i> HP Life Badges Archive</h2>
         
         <div class="badges-grid-container">
-            <!-- Badge 1: Ambassador (The Crown Jewel) -->
+            <!-- Badge 1: Ambassador -->
             <div class="badge-display-card cyber-interactive">
                 <img src="ambassador.jpg" alt="HP LIFE Ambassador">
                 <h3>HP LIFE Ambassador</h3>
@@ -579,7 +599,7 @@
             setTimeout(function() {
                 splashScreen.style.display = 'none';
                 cvView.classList.add('active');
-                topNav.style.display = 'flex'; // Show navigation after boot
+                topNav.style.display = 'flex'; 
                 
                 bgMusic.play().then(() => {
                     bgmPlaying = true;
