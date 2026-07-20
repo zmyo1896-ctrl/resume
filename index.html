@@ -283,13 +283,14 @@
                 height: 100% !important;
             }
             
-            /* Pure Black Text Color overrides for high contrast printing */
-            .text-main, .role-title, h1, h4, .section-label, .timeline-item div[style*="color: #fff"] {
+            /* 🔥 FIXED: Pure Black Text Color overrides for ALL TEXT in print including links 🔥 */
+            .text-main, .role-title, h1, h4, .section-label, .timeline-item div, .pdf-link, .pdf-link div {
                 color: #000 !important; font-weight: 700 !important; text-shadow: none !important;
             }
             .text-muted, .summary-text, .hp-courses-list li, .info-link-mini { 
                 color: #000 !important; font-weight: 500 !important; 
             }
+            
             /* Slightly darken colored accents for better grayscale print */
             .neon-blue, i.fa-solid, .company-duration { color: #1a4a7b !important; }
             .neon-purple { color: #442a8a !important; }
