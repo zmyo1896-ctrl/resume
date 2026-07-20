@@ -26,11 +26,11 @@
             --dark-bg: #e2e8f0;
             --glass-bg: rgba(255, 255, 255, 0.9);
             --glass-border: rgba(0, 0, 0, 0.15);
-            --text-main: #2d3748;
-            --text-muted: #4a5568;
-            --neon-blue: #3182ce;
-            --neon-purple: #805ad5;
-            --neon-green: #38a169;
+            --text-main: #1a202c;
+            --text-muted: #2d3748;
+            --neon-blue: #2b6cb0;
+            --neon-purple: #6b46c1;
+            --neon-green: #276749;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -86,34 +86,18 @@
             color: var(--neon-blue); box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
         }
         
-        /* Special Styling for Action Buttons */
-        .action-btn {
-            border-color: var(--neon-green);
-            color: var(--neon-green);
-            text-decoration: none;
-        }
-        .action-btn:hover {
-            background: rgba(57, 255, 20, 0.1);
-            border-color: var(--neon-green);
-            color: var(--neon-green);
-            box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
-        }
+        .action-btn { border-color: var(--neon-green); color: var(--neon-green); text-decoration: none; }
+        .action-btn:hover { background: rgba(57, 255, 20, 0.1); border-color: var(--neon-green); color: var(--neon-green); box-shadow: 0 0 20px rgba(57, 255, 20, 0.4); }
 
         /* Light Mode Specific Overrides */
-        body.light-mode .nav-btn {
-            background: rgba(255, 255, 255, 0.85); color: #2d3748;
-        }
+        body.light-mode .nav-btn { background: rgba(255, 255, 255, 0.85); color: #2d3748; }
         body.light-mode .nav-btn.active { background: #fff; color: var(--neon-blue); }
         body.light-mode .timeline-item { background: #f7fafc; border-color: rgba(0,0,0,0.1); }
         body.light-mode .left-column { background: rgba(0,0,0,0.03); }
-        body.light-mode .header-title h1 {
-            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: none;
-        }
-        body.light-mode .timeline-item div[style*="color: #fff"], body.light-mode .role-title { color: #2d3748 !important; }
-        body.light-mode .pdf-link { color: #2d3748; }
+        body.light-mode .header-title h1 { background: linear-gradient(to right, var(--neon-blue), var(--neon-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: none; }
+        body.light-mode .timeline-item div[style*="color: #fff"], body.light-mode .role-title { color: #1a202c !important; }
+        body.light-mode .pdf-link { color: #1a202c; }
 
-        /* BGM Toggle */
         #bgm-toggle {
             position: fixed; top: 20px; right: 20px; z-index: 10000;
             background: rgba(0, 0, 0, 0.6); border: 1px solid var(--neon-blue);
@@ -144,51 +128,20 @@
         .launch-btn:hover { background: var(--neon-blue); color: #fff; box-shadow: 0 0 30px var(--neon-blue), inset 0 0 20px #fff; }
 
         /* --- CV Container View --- */
-        #cv-view {
-            opacity: 0; transform: scale(0.95); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-            display: none; width: 100%; max-width: 210mm;
-        }
+        #cv-view { opacity: 0; transform: scale(0.95); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); display: none; width: 100%; max-width: 210mm; }
         #cv-view.active { opacity: 1; transform: scale(1); display: flex; }
 
         /* --- Badges Gallery View --- */
-        #badges-view {
-            opacity: 0; transform: scale(0.95); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-            display: none; width: 100%; max-width: 1000px; flex-direction: column; align-items: center;
-        }
+        #badges-view { opacity: 0; transform: scale(0.95); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); display: none; width: 100%; max-width: 1000px; flex-direction: column; align-items: center; }
         #badges-view.active { opacity: 1; transform: scale(1); display: flex; }
 
-        .badges-gallery-title {
-            font-family: 'Orbitron', sans-serif; font-size: 28px; color: var(--text-main);
-            text-transform: uppercase; letter-spacing: 3px; margin-bottom: 30px;
-            text-shadow: 0 0 15px var(--neon-purple); border-bottom: 2px solid var(--neon-purple); padding-bottom: 10px;
-        }
-
-        .badges-grid-container {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px; width: 100%; padding: 10px;
-        }
-
-        .badge-display-card {
-            background: rgba(20, 22, 35, 0.8); border: 1px solid rgba(176, 38, 255, 0.3);
-            border-radius: 12px; padding: 25px; text-align: center;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5), inset 0 0 15px rgba(176, 38, 255, 0.05);
-            transition: 0.3s;
-        }
+        .badges-gallery-title { font-family: 'Orbitron', sans-serif; font-size: 28px; color: var(--text-main); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 30px; text-shadow: 0 0 15px var(--neon-purple); border-bottom: 2px solid var(--neon-purple); padding-bottom: 10px; }
+        .badges-grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; width: 100%; padding: 10px; }
+        .badge-display-card { background: rgba(20, 22, 35, 0.8); border: 1px solid rgba(176, 38, 255, 0.3); border-radius: 12px; padding: 25px; text-align: center; box-shadow: 0 0 20px rgba(0,0,0,0.5), inset 0 0 15px rgba(176, 38, 255, 0.05); transition: 0.3s; }
         body.light-mode .badge-display-card { background: #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .badge-display-card:hover {
-            transform: translateY(-8px); border-color: var(--neon-blue);
-            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.2);
-        }
-        
-        .badge-display-card img {
-            width: 150px; height: 150px; object-fit: contain; margin-bottom: 15px;
-            border-radius: 12px; border: 2px solid rgba(0, 243, 255, 0.5);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.4); background: #fff; padding: 2px;
-        }
-        .badge-display-card h3 {
-            font-family: 'Orbitron', sans-serif; font-size: 15px; color: var(--neon-blue);
-            letter-spacing: 1px; margin-bottom: 5px; text-transform: uppercase; margin-top: 8px;
-        }
+        .badge-display-card:hover { transform: translateY(-8px); border-color: var(--neon-blue); box-shadow: 0 10px 30px rgba(0, 243, 255, 0.2); }
+        .badge-display-card img { width: 150px; height: 150px; object-fit: contain; margin-bottom: 15px; border-radius: 12px; border: 2px solid rgba(0, 243, 255, 0.5); box-shadow: 0 0 20px rgba(0, 243, 255, 0.4); background: #fff; padding: 2px; }
+        .badge-display-card h3 { font-family: 'Orbitron', sans-serif; font-size: 15px; color: var(--neon-blue); letter-spacing: 1px; margin-bottom: 5px; text-transform: uppercase; margin-top: 8px; }
         .badge-display-card p { font-size: 13px; color: var(--text-muted); }
 
         /* A4 Wrapper Shared Classes */
@@ -199,86 +152,71 @@
             box-shadow: 0 0 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(0, 243, 255, 0.05);
         }
         body.light-mode .a4-container { box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        
-        .a4-container::before {
-            content: ''; position: absolute; top: 0; left: 50%; width: 1px; height: 100%;
-            background: linear-gradient(to bottom, transparent, var(--neon-blue), var(--neon-purple), transparent); opacity: 0.6;
-        }
+        .a4-container::before { content: ''; position: absolute; top: 0; left: 50%; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, var(--neon-blue), var(--neon-purple), transparent); opacity: 0.6; }
 
         .cyber-interactive { cursor: pointer; transition: 0.2s; }
         .cyber-interactive:active { transform: scale(0.96) !important; filter: brightness(1.5); }
 
-        /* CV Columns */
-        .left-column { width: 45%; padding: 25px 20px; position: relative; z-index: 2; background: rgba(0,0,0,0.2); }
-        .right-column { width: 55%; padding: 25px 25px; z-index: 2; position: relative; }
+        /* CV Columns (More compact padding) */
+        .left-column { width: 45%; padding: 20px 15px; position: relative; z-index: 2; background: rgba(0,0,0,0.2); }
+        .right-column { width: 55%; padding: 20px 20px; z-index: 2; position: relative; }
 
-        /* CV Top Profile Grid */
-        .top-profile-grid { display: flex; justify-content: space-between; align-items: center; gap: 15px; margin-bottom: 15px; width: 100%; }
+        /* CV Top Profile Grid (Compact to prevent wrap) */
+        .top-profile-grid { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 12px; width: 100%; }
         .side-panel { flex: 1; min-width: 0; }
         
         .profile-img-container.compact {
-            width: 100px; height: 100px; margin: 0; flex-shrink: 0; border-radius: 50%; padding: 3px;
+            width: 80px; height: 80px; margin: 0; flex-shrink: 0; border-radius: 50%; padding: 3px;
             background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
             box-shadow: 0 0 15px rgba(176, 38, 255, 0.4); animation: pulse-glow 3s infinite;
         }
         @keyframes pulse-glow { 0% { box-shadow: 0 0 10px rgba(0, 243, 255, 0.3); } 50% { box-shadow: 0 0 25px rgba(176, 38, 255, 0.6); } 100% { box-shadow: 0 0 10px rgba(0, 243, 255, 0.3); } }
         .profile-img-container.compact img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 2px solid #0a0b10; }
         
-        /* Font Sizes (Adjusted for larger text & tighter spacing) */
-        .section-label-mini { font-family: 'Orbitron', sans-serif; font-size: 14px; color: var(--neon-blue); letter-spacing: 1px; margin-bottom: 4px; text-transform: uppercase; border-bottom: 1px solid rgba(0, 243, 255, 0.2); padding-bottom: 3px; }
-        .info-link-mini { display: flex; align-items: flex-start; gap: 6px; color: var(--text-main); font-size: 14px; margin-bottom: 4px; font-weight: 500; text-decoration: none; line-height: 1.3; word-break: break-word; }
-        .info-link-mini i { color: var(--neon-purple); font-size: 14px; width: 16px; text-align: center; margin-top: 2px;}
-        .section-label { font-family: 'Orbitron', sans-serif; font-size: 16px; color: var(--neon-blue); letter-spacing: 2px; margin-bottom: 8px; text-transform: uppercase; border-bottom: 1px solid rgba(0, 243, 255, 0.2); padding-bottom: 4px; margin-top: 15px; }
+        /* Font Sizes (Tighter Spacing) */
+        .section-label-mini { font-family: 'Orbitron', sans-serif; font-size: 13px; color: var(--neon-blue); letter-spacing: 1px; margin-bottom: 3px; text-transform: uppercase; border-bottom: 1px solid rgba(0, 243, 255, 0.2); padding-bottom: 2px; }
+        .info-link-mini { display: flex; align-items: flex-start; gap: 4px; color: var(--text-main); font-size: 12px; margin-bottom: 3px; font-weight: 500; text-decoration: none; line-height: 1.2; word-break: keep-all; }
+        .info-link-mini i { color: var(--neon-purple); font-size: 12px; width: 14px; text-align: center; margin-top: 1px;}
+        .section-label { font-family: 'Orbitron', sans-serif; font-size: 15px; color: var(--neon-blue); letter-spacing: 2px; margin-bottom: 6px; text-transform: uppercase; border-bottom: 1px solid rgba(0, 243, 255, 0.2); padding-bottom: 3px; margin-top: 10px; }
 
-        .skills-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
-        .skills-list li { font-size: 15px; background: rgba(0, 243, 255, 0.05); padding: 6px 10px; border-radius: 4px; border-left: 2px solid var(--neon-purple); }
+        .skills-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+        .skills-list li { font-size: 14px; background: rgba(0, 243, 255, 0.05); padding: 5px 8px; border-radius: 4px; border-left: 2px solid var(--neon-purple); line-height: 1.2; }
         .skills-list li:hover { background: rgba(176, 38, 255, 0.15); transform: translateX(5px); border-left: 2px solid var(--neon-blue); }
 
-        .header-title h1 { font-family: 'Orbitron', sans-serif; font-size: 36px; line-height: 1.1; background: linear-gradient(to right, var(--neon-blue), #fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 15px rgba(0, 243, 255, 0.3); letter-spacing: 1px; margin-bottom: 6px; }
-        .header-title p { color: var(--neon-purple); font-size: 16px; font-weight: 600; margin-top: 2px; letter-spacing: 1px; text-transform: uppercase; }
-        .section-title { font-family: 'Orbitron', sans-serif; color: var(--text-main); font-size: 19px; margin: 12px 0 8px; display: flex; align-items: center; gap: 10px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 4px; }
-        .section-title i { color: var(--neon-blue); font-size: 18px; }
-        .summary-text { font-size: 15px; line-height: 1.4; color: var(--text-muted); background: rgba(255,255,255,0.02); padding: 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 5px; }
+        .header-title h1 { font-family: 'Orbitron', sans-serif; font-size: 32px; line-height: 1; background: linear-gradient(to right, var(--neon-blue), #fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 15px rgba(0, 243, 255, 0.3); letter-spacing: 1px; margin-bottom: 4px; }
+        .header-title p { color: var(--neon-purple); font-size: 14px; font-weight: 600; margin-top: 2px; letter-spacing: 1px; text-transform: uppercase; }
+        .section-title { font-family: 'Orbitron', sans-serif; color: var(--text-main); font-size: 17px; margin: 10px 0 6px; display: flex; align-items: center; gap: 8px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 4px; }
+        .section-title i { color: var(--neon-blue); font-size: 16px; }
+        .summary-text { font-size: 14px; line-height: 1.3; color: var(--text-muted); background: rgba(255,255,255,0.02); padding: 8px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 4px; }
 
-        .timeline { display: flex; flex-direction: column; gap: 6px; }
-        .timeline-item { background: rgba(0, 0, 0, 0.4); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(0, 243, 255, 0.1); }
+        .timeline { display: flex; flex-direction: column; gap: 5px; }
+        .timeline-item { background: rgba(0, 0, 0, 0.4); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(0, 243, 255, 0.1); }
         .timeline-item:hover { border-color: var(--neon-purple); box-shadow: 0 0 15px rgba(176, 38, 255, 0.2); }
-        .timeline-header { display: flex; justify-content: space-between; margin-bottom: 2px; }
-        .role-title { font-size: 16px; font-weight: 700; color: #fff; }
-        .company-duration { font-size: 14px; color: var(--neon-blue); font-weight: 600; }
+        .timeline-header { display: flex; justify-content: space-between; margin-bottom: 1px; align-items: center; }
+        .role-title { font-size: 15px; font-weight: 700; color: #fff; }
+        .company-duration { font-size: 13px; color: var(--neon-blue); font-weight: 600; }
 
         /* HP Certificates Grid for CV */
-        .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: start; }
-        .hp-category-card { background: rgba(255, 255, 255, 0.02); border-radius: 8px; padding: 10px; border: 1px solid rgba(255, 255, 255, 0.05); height: 100%; }
+        .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; align-items: start; }
+        .hp-category-card { background: rgba(255, 255, 255, 0.02); border-radius: 6px; padding: 6px; border: 1px solid rgba(255, 255, 255, 0.05); height: 100%; }
         .hp-category-card:hover { background: rgba(0, 243, 255, 0.05); border-color: var(--neon-blue); }
         
-        .category-title-wrapper { display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 6px; margin-bottom: 6px; }
+        .category-title-wrapper { display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 4px; margin-bottom: 4px; }
         
-        .hp-badge { 
-            width: 50px; height: 50px; object-fit: contain; border-radius: 8px; 
-            box-shadow: 0 0 12px rgba(0, 243, 255, 0.5); border: 1px solid rgba(0, 243, 255, 0.5);
-            background: #fff; padding: 2px; 
-        }
+        .hp-badge { width: 35px; height: 35px; object-fit: contain; border-radius: 6px; box-shadow: 0 0 8px rgba(0, 243, 255, 0.5); border: 1px solid rgba(0, 243, 255, 0.5); background: #fff; padding: 2px; }
         
-        .hp-category-card h4 { font-size: 15px; color: var(--text-main); margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+        .hp-category-card h4 { font-size: 13px; color: var(--text-main); margin-bottom: 0; }
         .hp-courses-list { list-style: none; padding: 0; }
-        .hp-courses-list li { font-size: 14px; color: var(--text-muted); margin-bottom: 3px; padding-left: 14px; position: relative; line-height: 1.2; }
-        .hp-courses-list li::before { content: "▹"; color: var(--neon-blue); position: absolute; left: 0; top: 0; font-size: 14px;}
+        .hp-courses-list li { font-size: 12px; color: var(--text-muted); margin-bottom: 2px; padding-left: 12px; position: relative; line-height: 1.1; }
+        .hp-courses-list li::before { content: "▹"; color: var(--neon-blue); position: absolute; left: 0; top: 0; font-size: 12px;}
 
         /* Link Styling inside Timeline */
         .pdf-link { text-decoration: none; color: #fff; display: block; }
         .pdf-link:hover { color: var(--neon-blue); }
         
         /* View Badge Styling */
-        .view-badge {
-            display: inline-block; font-size: 12px; color: var(--neon-green);
-            margin-left: 10px; animation: pulse-text 1.5s infinite; font-weight: 700;
-        }
-        @keyframes pulse-text {
-            0% { opacity: 1; text-shadow: 0 0 5px var(--neon-green); }
-            50% { opacity: 0.5; text-shadow: none; }
-            100% { opacity: 1; text-shadow: 0 0 5px var(--neon-green); }
-        }
+        .view-badge { display: inline-block; font-size: 11px; color: var(--neon-green); margin-left: 8px; animation: pulse-text 1.5s infinite; font-weight: 700; }
+        @keyframes pulse-text { 0% { opacity: 1; text-shadow: 0 0 5px var(--neon-green); } 50% { opacity: 0.5; text-shadow: none; } 100% { opacity: 1; text-shadow: 0 0 5px var(--neon-green); } }
 
         /* --- MOBILE RESPONSIVE MEDIA QUERIES --- */
         @media (max-width: 768px) {
@@ -287,7 +225,7 @@
             .nav-btn { font-size: 11px; padding: 8px 12px; }
             .a4-container { flex-direction: column; }
             .a4-container::before { display: none; }
-            .left-column, .right-column { width: 100%; padding: 20px; }
+            .left-column, .right-column { width: 100%; padding: 15px; }
             .cert-grid { grid-template-columns: 1fr; }
             .badges-gallery-title { font-size: 22px; }
         }
@@ -319,40 +257,42 @@
                 box-shadow: none !important;
                 border-radius: 0 !important;
                 backdrop-filter: none !important;
-                flex-direction: row !important; /* Keep columns side-by-side */
+                flex-direction: row !important;
             }
             .a4-container::before { display: none !important; }
             
-            /* Columns */
-            .left-column { background: #f0f4f8 !important; width: 40% !important; padding: 20mm 10mm !important; }
-            .right-column { width: 60% !important; padding: 20mm 15mm !important; }
+            /* Columns with much tighter Print Margins */
+            .left-column { background: #f0f4f8 !important; width: 45% !important; padding: 8mm 6mm !important; }
+            .right-column { width: 55% !important; padding: 8mm 8mm !important; }
             
-            /* Text Color overrides for white paper */
+            /* Pure Black Text Color overrides for high contrast printing */
             .text-main, .role-title, h1, h4, .section-label, .timeline-item div[style*="color: #fff"] {
-                color: #1a202c !important; text-shadow: none !important;
+                color: #000 !important; font-weight: 700 !important; text-shadow: none !important;
             }
-            .text-muted, .summary-text, .hp-courses-list li { color: #4a5568 !important; }
-            .neon-blue, i.fa-solid, .company-duration { color: #2b6cb0 !important; }
-            .neon-purple { color: #805ad5 !important; }
+            .text-muted, .summary-text, .hp-courses-list li, .info-link-mini { 
+                color: #000 !important; font-weight: 500 !important; 
+            }
+            /* Slightly darken colored accents for better grayscale print */
+            .neon-blue, i.fa-solid, .company-duration { color: #1a4a7b !important; }
+            .neon-purple { color: #442a8a !important; }
             
-            /* Clean up boxes and borders */
-            .timeline-item { border: none !important; background: transparent !important; padding: 5px 0 !important; box-shadow: none !important;}
-            .timeline-item.cyber-interactive { border-left: 2px solid #cbd5e0 !important; padding-left: 10px !important;}
-            .skills-list li { background: transparent !important; border: 1px solid #e2e8f0 !important; border-left: 3px solid #2b6cb0 !important; padding: 6px 10px !important; color: #1a202c !important;}
-            
-            /* Remove animations */
-            * { animation: none !important; transition: none !important; }
+            /* Clean up boxes and borders to save space */
+            .timeline-item { border: none !important; background: transparent !important; padding: 4px 0 !important; box-shadow: none !important;}
+            .timeline-item.cyber-interactive { border-left: 2px solid #a0aec0 !important; padding-left: 8px !important;}
+            .skills-list li { background: transparent !important; border: 1px solid #cbd5e0 !important; border-left: 3px solid #2b6cb0 !important; padding: 4px 8px !important; color: #000 !important; font-weight: 600 !important;}
             
             /* Image Borders */
-            .hp-badge { box-shadow: none !important; border: 1px solid #e2e8f0 !important; }
-            .profile-img-container.compact { box-shadow: none !important; background: transparent !important; border: 2px solid #cbd5e0 !important;}
+            .hp-badge { box-shadow: none !important; border: 1px solid #cbd5e0 !important; width: 30px !important; height: 30px !important; }
+            .profile-img-container.compact { box-shadow: none !important; background: transparent !important; border: 2px solid #a0aec0 !important; width: 70px !important; height: 70px !important; }
             
             /* Title Gradient Fix */
-            .header-title h1 { -webkit-text-fill-color: #1a202c !important; background: none !important; }
+            .header-title h1 { -webkit-text-fill-color: #000 !important; background: none !important; font-weight: 800 !important; }
             
-            /* Grid Fix */
-            .cert-grid { grid-template-columns: 1fr; gap: 8px;}
-            .hp-category-card { border: 1px solid #e2e8f0 !important; padding: 8px !important; background: transparent !important;}
+            /* GRID BALANCE FIX - Keep 2 Columns in Print to save vertical space! */
+            .cert-grid { grid-template-columns: 1fr 1fr !important; gap: 4px !important;}
+            .hp-category-card { border: 1px solid #cbd5e0 !important; padding: 4px !important; background: transparent !important;}
+            
+            * { animation: none !important; transition: none !important; }
         }
     </style>
 </head>
@@ -411,7 +351,7 @@
                         <div class="section-label-mini"><i class="fa-solid fa-satellite-dish"></i> Comms</div>
                         <a href="tel:+959781249917" class="info-link-mini cyber-interactive"><i class="fa-solid fa-phone"></i> +95 9781249917</a>
                         <a href="mailto:mhzcreation.biz@gmail.com" class="info-link-mini cyber-interactive"><i class="fa-solid fa-envelope"></i> mhzcreation.biz@gmail.com</a>
-                        <div class="info-link-mini cyber-interactive"><i class="fa-solid fa-location-crosshairs"></i> Phugyi, Hmawbi, Yangon</div>
+                        <div class="info-link-mini cyber-interactive"><i class="fa-solid fa-location-crosshairs"></i> Phugyi, Hmawbi</div>
                     </div>
 
                     <div class="profile-img-container compact cyber-interactive">
@@ -604,56 +544,56 @@
                     <div class="timeline" style="gap: 4px;">
                         
                         <!-- MY INFO ZIP LINK with 'download' attribute -->
-                        <div class="timeline-item cyber-interactive" style="padding: 8px 12px; border-left: 3px solid var(--neon-blue);">
+                        <div class="timeline-item cyber-interactive" style="padding: 6px 10px; border-left: 3px solid var(--neon-blue);">
                             <a href="My Info-20260718T123919Z-1-001.zip" download target="_blank" class="pdf-link">
-                                <div style="font-size: 15px; font-weight: 600;">
+                                <div style="font-size: 14px; font-weight: 600;">
                                     • Personal Info & Documents Archive 
-                                    <i class="fa-solid fa-folder-open" style="margin-left: 5px; color: var(--neon-blue); font-size: 16px;"></i> 
+                                    <i class="fa-solid fa-folder-open" style="margin-left: 5px; color: var(--neon-blue); font-size: 14px;"></i> 
                                     <span class="view-badge">👉 View 👈</span>
                                 </div>
                             </a>
                         </div>
                         
-                        <div class="timeline-item cyber-interactive" style="padding: 8px 12px;">
-                            <div style="font-size: 15px; font-weight: 600; color: #fff;">• Bachelor of Arts (B.A. in History)</div>
+                        <div class="timeline-item cyber-interactive" style="padding: 6px 10px;">
+                            <div style="font-size: 14px; font-weight: 600; color: #fff;">• Bachelor of Arts (B.A. in History)</div>
                         </div>
                         
                         <!-- HackerRank Link -->
-                        <div class="timeline-item cyber-interactive" style="padding: 8px 12px; border-left: 3px solid #2EC866;">
+                        <div class="timeline-item cyber-interactive" style="padding: 6px 10px; border-left: 3px solid #2EC866;">
                             <a href="HackerRank_Certificates_Compiled (1).pdf" target="_blank" class="pdf-link">
-                                <div style="font-size: 15px; font-weight: 600;">
+                                <div style="font-size: 14px; font-weight: 600;">
                                     • Software Engineer Certificate 
-                                    <i class="fa-brands fa-hackerrank" style="margin-left: 5px; color: #2EC866; font-size: 16px;"></i>
+                                    <i class="fa-brands fa-hackerrank" style="margin-left: 5px; color: #2EC866; font-size: 14px;"></i>
                                     <span class="view-badge">👉 View 👈</span>
                                 </div>
                             </a>
                         </div>
                         
                         <!-- Professional Development ZIP with 'download' attribute -->
-                        <div class="timeline-item cyber-interactive" style="padding: 8px 12px; border-left: 3px solid var(--neon-purple);">
+                        <div class="timeline-item cyber-interactive" style="padding: 6px 10px; border-left: 3px solid var(--neon-purple);">
                             <a href="Profession Development-20260718T122435Z-1-001.zip" download target="_blank" class="pdf-link">
-                                <div style="font-size: 15px; font-weight: 600;">
+                                <div style="font-size: 14px; font-weight: 600;">
                                     • Professional Development Certificates 
-                                    <i class="fa-solid fa-file-zipper" style="margin-left: 5px; color: var(--neon-purple); font-size: 16px;"></i>
+                                    <i class="fa-solid fa-file-zipper" style="margin-left: 5px; color: var(--neon-purple); font-size: 14px;"></i>
                                     <span class="view-badge">👉 View 👈</span>
                                 </div>
                             </a>
                         </div>
                         
-                        <div class="timeline-item cyber-interactive" style="padding: 8px 12px;">
-                            <div style="font-size: 15px; font-weight: 600; color: #fff;">• LCCI (Accounting Framework) – Currently Pursuing</div>
+                        <div class="timeline-item cyber-interactive" style="padding: 6px 10px;">
+                            <div style="font-size: 14px; font-weight: 600; color: #fff;">• LCCI (Accounting Framework) – Currently Pursuing</div>
                         </div>
-                        <div class="timeline-item cyber-interactive" style="padding: 8px 12px;">
-                            <div style="font-size: 15px; font-weight: 600; color: #fff;">• AI in Human Resource Management – OHSC (Enrolled Jun 2026)</div>
+                        <div class="timeline-item cyber-interactive" style="padding: 6px 10px;">
+                            <div style="font-size: 14px; font-weight: 600; color: #fff;">• AI in Human Resource Management – OHSC (Enrolled Jun 2026)</div>
                         </div>
-                        <div class="timeline-item cyber-interactive" style="padding: 8px 12px;">
-                            <div style="font-size: 15px; font-weight: 600; color: #fff;">• Bookkeeping & Debits and Credits – OHSC (Enrolled Jun 2026)</div>
+                        <div class="timeline-item cyber-interactive" style="padding: 6px 10px;">
+                            <div style="font-size: 14px; font-weight: 600; color: #fff;">• Bookkeeping & Debits and Credits – OHSC (Enrolled Jun 2026)</div>
                         </div>
-                        <div class="timeline-item cyber-interactive" style="padding: 8px 12px;">
-                            <div style="font-size: 15px; font-weight: 600; color: #fff;">• Office Administration Quiz Certificate – ProProfs</div>
+                        <div class="timeline-item cyber-interactive" style="padding: 6px 10px;">
+                            <div style="font-size: 14px; font-weight: 600; color: #fff;">• Office Administration Quiz Certificate – ProProfs</div>
                         </div>
-                        <div class="timeline-item cyber-interactive" style="padding: 8px 12px;">
-                            <div style="font-size: 15px; font-weight: 600; color: #fff;">• Computer Basic Course – ILBSM (Dec 2015 - Jan 2016)</div>
+                        <div class="timeline-item cyber-interactive" style="padding: 6px 10px;">
+                            <div style="font-size: 14px; font-weight: 600; color: #fff;">• Computer Basic Course – ILBSM (Dec 2015 - Jan 2016)</div>
                         </div>
                     </div>
                 </div>
