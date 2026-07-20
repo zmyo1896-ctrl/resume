@@ -157,11 +157,11 @@
         .cyber-interactive { cursor: pointer; transition: 0.2s; }
         .cyber-interactive:active { transform: scale(0.96) !important; filter: brightness(1.5); }
 
-        /* CV Columns (More compact padding) */
+        /* CV Columns (Web View) */
         .left-column { width: 45%; padding: 20px 15px; position: relative; z-index: 2; background: rgba(0,0,0,0.2); }
         .right-column { width: 55%; padding: 20px 20px; z-index: 2; position: relative; }
 
-        /* CV Top Profile Grid (Compact to prevent wrap) */
+        /* CV Top Profile Grid */
         .top-profile-grid { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 12px; width: 100%; }
         .side-panel { flex: 1; min-width: 0; }
         
@@ -173,7 +173,7 @@
         @keyframes pulse-glow { 0% { box-shadow: 0 0 10px rgba(0, 243, 255, 0.3); } 50% { box-shadow: 0 0 25px rgba(176, 38, 255, 0.6); } 100% { box-shadow: 0 0 10px rgba(0, 243, 255, 0.3); } }
         .profile-img-container.compact img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 2px solid #0a0b10; }
         
-        /* Font Sizes (Tighter Spacing) */
+        /* Font Sizes */
         .section-label-mini { font-family: 'Orbitron', sans-serif; font-size: 13px; color: var(--neon-blue); letter-spacing: 1px; margin-bottom: 3px; text-transform: uppercase; border-bottom: 1px solid rgba(0, 243, 255, 0.2); padding-bottom: 2px; }
         .info-link-mini { display: flex; align-items: flex-start; gap: 4px; color: var(--text-main); font-size: 12px; margin-bottom: 3px; font-weight: 500; text-decoration: none; line-height: 1.2; word-break: keep-all; }
         .info-link-mini i { color: var(--neon-purple); font-size: 12px; width: 14px; text-align: center; margin-top: 1px;}
@@ -239,6 +239,8 @@
                 margin: 0 !important; 
                 color: #000 !important;
                 display: block !important;
+                -webkit-print-color-adjust: exact; /* Keep background colors in print */
+                print-color-adjust: exact;
             }
             /* Hide all interactive & background elements */
             #top-nav, #bgm-toggle, #splash-screen, .bg-glow, .bg-glow-2, #badges-view, .view-badge { 
@@ -247,10 +249,10 @@
             
             #cv-view { display: flex !important; opacity: 1 !important; transform: none !important; width: 100% !important; max-width: 100% !important; }
             
-            /* A4 Size exact settings */
+            /* A4 Size exact settings - Force Full Height */
             .a4-container {
                 width: 210mm !important;
-                min-height: 297mm !important;
+                height: 297mm !important; /* Force to exact A4 height */
                 margin: 0 auto !important;
                 background: #fff !important;
                 border: none !important;
@@ -258,12 +260,28 @@
                 border-radius: 0 !important;
                 backdrop-filter: none !important;
                 flex-direction: row !important;
+                overflow: hidden !important;
             }
             .a4-container::before { display: none !important; }
             
-            /* Columns with much tighter Print Margins */
-            .left-column { background: #f0f4f8 !important; width: 45% !important; padding: 8mm 6mm !important; }
-            .right-column { width: 55% !important; padding: 8mm 8mm !important; }
+            /* Columns with Flex to distribute space evenly */
+            .left-column { 
+                background: #f0f4f8 !important; 
+                width: 42% !important; 
+                padding: 12mm 8mm !important; 
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: space-between !important; /* Spreads content to bottom */
+                height: 100% !important;
+            }
+            .right-column { 
+                width: 58% !important; 
+                padding: 12mm 12mm !important; 
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: space-between !important; /* Spreads content to bottom */
+                height: 100% !important;
+            }
             
             /* Pure Black Text Color overrides for high contrast printing */
             .text-main, .role-title, h1, h4, .section-label, .timeline-item div[style*="color: #fff"] {
@@ -276,21 +294,24 @@
             .neon-blue, i.fa-solid, .company-duration { color: #1a4a7b !important; }
             .neon-purple { color: #442a8a !important; }
             
-            /* Clean up boxes and borders to save space */
+            /* Give sections some breathing room so they fill A4 beautifully */
+            .timeline { gap: 10px !important; }
             .timeline-item { border: none !important; background: transparent !important; padding: 4px 0 !important; box-shadow: none !important;}
-            .timeline-item.cyber-interactive { border-left: 2px solid #a0aec0 !important; padding-left: 8px !important;}
-            .skills-list li { background: transparent !important; border: 1px solid #cbd5e0 !important; border-left: 3px solid #2b6cb0 !important; padding: 4px 8px !important; color: #000 !important; font-weight: 600 !important;}
+            .timeline-item.cyber-interactive { border-left: 2px solid #a0aec0 !important; padding-left: 10px !important;}
+            
+            .skills-list { gap: 8px !important; }
+            .skills-list li { background: transparent !important; border: 1px solid #cbd5e0 !important; border-left: 4px solid #2b6cb0 !important; padding: 6px 10px !important; color: #000 !important; font-weight: 600 !important;}
             
             /* Image Borders */
-            .hp-badge { box-shadow: none !important; border: 1px solid #cbd5e0 !important; width: 30px !important; height: 30px !important; }
-            .profile-img-container.compact { box-shadow: none !important; background: transparent !important; border: 2px solid #a0aec0 !important; width: 70px !important; height: 70px !important; }
+            .hp-badge { box-shadow: none !important; border: 1px solid #cbd5e0 !important; width: 35px !important; height: 35px !important; }
+            .profile-img-container.compact { box-shadow: none !important; background: transparent !important; border: 2px solid #a0aec0 !important; width: 85px !important; height: 85px !important; }
             
             /* Title Gradient Fix */
-            .header-title h1 { -webkit-text-fill-color: #000 !important; background: none !important; font-weight: 800 !important; }
+            .header-title h1 { -webkit-text-fill-color: #000 !important; background: none !important; font-weight: 800 !important; font-size: 34px !important; margin-bottom: 6px !important;}
             
-            /* GRID BALANCE FIX - Keep 2 Columns in Print to save vertical space! */
-            .cert-grid { grid-template-columns: 1fr 1fr !important; gap: 4px !important;}
-            .hp-category-card { border: 1px solid #cbd5e0 !important; padding: 4px !important; background: transparent !important;}
+            /* GRID BALANCE FIX - Keep 2 Columns in Print */
+            .cert-grid { grid-template-columns: 1fr 1fr !important; gap: 8px !important;}
+            .hp-category-card { border: 1px solid #cbd5e0 !important; padding: 6px !important; background: transparent !important;}
             
             * { animation: none !important; transition: none !important; }
         }
