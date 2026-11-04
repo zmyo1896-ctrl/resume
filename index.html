@@ -260,10 +260,21 @@
             #top-nav { gap: 8px; top: 15px; left: 10px; right: 10px; display: flex; justify-content: center; flex-wrap: wrap;}
             .nav-btn { font-size: 11px; padding: 8px 12px; }
             .a4-container { flex-direction: column; }
+            #cv-view { flex-direction: column; }
+            #cv-view .right-column { order: 1; }
+            #cv-view .left-column { order: 2; }
             .a4-container::before { display: none; }
             .left-column, .right-column { width: 100%; padding: 15px; }
             .cert-grid { grid-template-columns: 1fr; }
             .badges-gallery-title { font-size: 22px; }
+            .mobile-contact { display: flex; }
+            #cv-view .top-profile-grid .side-panel:first-child { display: none; }
+            .summary-text { font-size: 15px; line-height: 1.5; }
+            .hp-courses-list li { font-size: 13px; line-height: 1.25; }
+        }
+        @media (max-width: 560px) {
+            .timeline-header { flex-direction: column; align-items: flex-start; gap: 2px; }
+            .company-duration { font-size: 13px; }
         }
 
         /* --- PRINT A4 MODE (MAGIC HAPPENS HERE) --- */
@@ -352,16 +363,80 @@
             
             * { animation: none !important; transition: none !important; }
         }
+
+        /* Clear glass surfaces and slow floating accents */
+        :root { --glass-bg: rgba(20, 22, 35, 0.44); --glass-border: rgba(255, 255, 255, 0.2); }
+        body.light-mode { --glass-bg: rgba(255, 255, 255, 0.76); --glass-border: rgba(255, 255, 255, 0.72); }
+        .ambient-orbs { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+        .ambient-orb {
+            position: absolute; display: block; border-radius: 50%;
+            background: radial-gradient(circle at 28% 24%, rgba(255,255,255,0.42), rgba(0,243,255,0.15) 34%, rgba(176,38,255,0.07) 68%, rgba(255,255,255,0.015));
+            border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+            box-shadow: inset 0 0 24px rgba(255,255,255,0.14), 0 0 36px rgba(0,243,255,0.13);
+            animation: float-glass 16s ease-in-out infinite;
+        }
+        .orb-one { width: 132px; height: 132px; top: 24vh; left: 5vw; }
+        .orb-two { width: 82px; height: 82px; top: 58vh; right: 7vw; animation-delay: -5s; }
+        .orb-three { width: 48px; height: 48px; bottom: 11vh; left: 23vw; animation-delay: -9s; }
+        @keyframes float-glass {
+            0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+            50% { transform: translate3d(12px, -22px, 0) rotate(8deg); }
+        }
+        .nav-btn { background: rgba(255,255,255,0.07); backdrop-filter: blur(16px) saturate(150%); -webkit-backdrop-filter: blur(16px) saturate(150%); }
+        .a4-container {
+            background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.035) 42%, rgba(0,243,255,0.055));
+            border-color: rgba(255,255,255,0.2); backdrop-filter: blur(26px) saturate(165%); -webkit-backdrop-filter: blur(26px) saturate(165%);
+            box-shadow: 0 22px 70px rgba(0,0,0,0.42), inset 0 1px 0 rgba(255,255,255,0.24), inset 0 0 34px rgba(0,243,255,0.055);
+        }
+        .a4-container::after {
+            content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 1;
+            background: linear-gradient(140deg, rgba(255,255,255,0.1), transparent 22%, transparent 76%, rgba(0,243,255,0.045));
+        }
+        .left-column { background: linear-gradient(150deg, rgba(255,255,255,0.075), rgba(0,0,0,0.08)); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+        .side-panel, .summary-text, .timeline-item, .hp-category-card, .skills-list li, .badge-display-card {
+            background: linear-gradient(140deg, rgba(255,255,255,0.09), rgba(255,255,255,0.035));
+            border-color: rgba(255,255,255,0.14); backdrop-filter: blur(16px) saturate(150%); -webkit-backdrop-filter: blur(16px) saturate(150%);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 8px 22px rgba(0,0,0,0.12);
+        }
+        .side-panel { padding: 8px; border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; }
+        .summary-text { line-height: 1.48; padding: 12px; border-radius: 10px; color: #c6d4e7; }
+        .timeline-item { transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease; }
+        .timeline-item:hover, .hp-category-card:hover, .badge-display-card:hover { transform: translateY(-3px); border-color: rgba(0,243,255,0.48); box-shadow: 0 14px 30px rgba(0,243,255,0.12), inset 0 1px 0 rgba(255,255,255,0.18); }
+        .hp-category-card { border-radius: 10px; }
+        .skills-list li { border-top: 1px solid rgba(255,255,255,0.08); border-radius: 7px; }
+        .profile-img-container.compact { box-shadow: 0 0 22px rgba(0,243,255,0.22), 0 0 34px rgba(176,38,255,0.2); }
+        .header-title { padding: 4px 0 10px; }
+        .mobile-contact {
+            display: none; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin: 8px 0 12px;
+            padding: 10px 12px; border: 1px solid rgba(255,255,255,0.15); border-radius: 10px;
+            background: linear-gradient(140deg, rgba(255,255,255,0.09), rgba(255,255,255,0.035));
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+        }
+        .mobile-contact a, .mobile-contact span { display: flex; align-items: center; gap: 6px; color: var(--text-main); font-size: 14px; text-decoration: none; }
+        .mobile-contact i { color: var(--neon-blue); }
+        #cv-view, #badges-view { position: relative; z-index: 1; }
+        body.light-mode .a4-container { background: linear-gradient(135deg, rgba(255,255,255,0.86), rgba(255,255,255,0.66)); }
+        body.light-mode .side-panel, body.light-mode .summary-text, body.light-mode .timeline-item, body.light-mode .hp-category-card, body.light-mode .skills-list li, body.light-mode .badge-display-card {
+            background: rgba(255,255,255,0.66); border-color: rgba(70,95,130,0.14); color: #1a202c;
+        }
+        @media (max-width: 768px) {
+            .ambient-orbs { opacity: 0.55; }
+            .side-panel { padding: 6px; }
+            .mobile-contact { display: flex; }
+        }
+        @media (prefers-reduced-motion: reduce) { .ambient-orb { animation: none; } }
+        @media print { .ambient-orbs, .a4-container::after { display: none !important; } }
     </style>
 </head>
 <body>
 
     <div class="bg-glow"></div>
     <div class="bg-glow-2"></div>
-
-    <audio id="bgMusic" loop>
-        <source src="bgm.mp3" type="audio/mpeg">
-    </audio>
+    <div class="ambient-orbs" aria-hidden="true">
+        <span class="ambient-orb orb-one"></span>
+        <span class="ambient-orb orb-two"></span>
+        <span class="ambient-orb orb-three"></span>
+    </div>
 
     <!-- Navigation Menu (Added Theme & Print Buttons) -->
     <div id="top-nav">
@@ -386,10 +461,6 @@
         <a href="HackerRank_Certificates_Compiled (1).pdf" download target="_blank" class="nav-btn cyber-interactive action-btn">
             <i class="fa-solid fa-download"></i> Download CV
         </a>
-    </div>
-
-    <div id="bgm-toggle" class="cyber-interactive">
-        <i class="fa-solid fa-volume-high"></i> BGM
     </div>
 
     <!-- Splash Screen -->
@@ -556,18 +627,23 @@
             <div class="right-column">
                 <div class="header-title cyber-interactive">
                     <h1>U MYO HTET ZAW</h1>
-                    <p>Freelance Developer • Automation Specialist • Content Creator</p>
+                    <p>Computing Teacher • Freelance Developer • Automation Specialist</p>
+                </div>
+                <div class="mobile-contact" aria-label="Contact information">
+                    <a href="tel:+959781249917"><i class="fa-solid fa-phone"></i> +95 9781249917</a>
+                    <a href="mailto:mhzcreation.biz@gmail.com"><i class="fa-solid fa-envelope"></i> mhzcreation.biz@gmail.com</a>
+                    <span><i class="fa-solid fa-location-crosshairs"></i> Phugyi, Hmawbi</span>
                 </div>
 
                 <div>
-                    <div class="section-title"><i class="fa-solid fa-user-astronaut"></i> Executive Overview</div>
+                    <div class="section-title"><i class="fa-solid fa-user-astronaut"></i> Professional Summary</div>
                     <p class="summary-text cyber-interactive">
-                        Highly motivated and versatile professional with a strong technical background in software engineering, workflow automation, and financial analysis. Proficient in AI-assisted programming, bot development, and digital marketing. Adept at rapid learning and practical solution delivery.
+                        Currently teaching the Oxford Computing course at SAYA SHINE INTERNATIONAL Primary School, with previous experience as a Grade 11 Guide Teacher. Combines teaching experience with a background in software engineering, workflow automation, and digital tools. Holds a B.A. in History and an LCCI Accounting Framework certificate.
                     </p>
                 </div>
 
                 <div>
-                    <div class="section-title"><i class="fa-solid fa-network-wired"></i> Experience Logs</div>
+                    <div class="section-title"><i class="fa-solid fa-network-wired"></i> Professional Experience</div>
                     <div class="timeline">
                         <div class="timeline-item cyber-interactive">
                             <div class="timeline-header">
@@ -621,7 +697,7 @@
                 </div>
 
                 <div>
-                    <div class="section-title"><i class="fa-solid fa-graduation-cap"></i> Databanks & Certifications</div>
+                    <div class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education & Certifications</div>
                     <div class="timeline" style="gap: 4px;">
                         
                         <!-- MY INFO ZIP LINK with 'download' attribute -->
@@ -767,10 +843,6 @@
             osc.stop(audioCtx.currentTime + 0.1);
         }
 
-        const bgMusic = document.getElementById('bgMusic');
-        const bgmToggle = document.getElementById('bgm-toggle');
-        let bgmPlaying = false;
-
         function playIntro() {
             const introVideo = document.getElementById('intro-video');
             const introFrame = document.getElementById('intro-frame');
@@ -806,15 +878,6 @@
                 splashScreen.style.display = 'none';
                 cvView.classList.add('active');
                 topNav.style.display = 'flex'; 
-                
-                bgMusic.play().then(() => {
-                    bgmPlaying = true;
-                    bgmToggle.style.display = 'flex';
-                }).catch(e => {
-                    bgmToggle.style.display = 'flex';
-                    bgmToggle.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> BGM';
-                    bgmToggle.style.color = 'var(--text-muted)';
-                });
             }, 1000);
         }
 
@@ -866,22 +929,6 @@
                 themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i> Light Mode';
             }
         }
-
-        bgmToggle.addEventListener('click', () => {
-            initAudio();
-            playClickSound(); 
-            if (bgmPlaying) {
-                bgMusic.pause();
-                bgmToggle.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> BGM';
-                bgmToggle.style.color = 'var(--text-muted)';
-                bgmPlaying = false;
-            } else {
-                bgMusic.play();
-                bgmToggle.innerHTML = '<i class="fa-solid fa-volume-high"></i> BGM';
-                bgmToggle.style.color = 'var(--neon-green)';
-                bgmPlaying = true;
-            }
-        });
 
         // Add sound to interactive elements
         document.querySelectorAll('.cyber-interactive').forEach(el => {
